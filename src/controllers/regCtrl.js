@@ -36,7 +36,7 @@ exports.validate=(req,res)=>
 		{
 			if(role==="Admin")
 			{
-				res.send("admin dashborad");
+				res.render("adminDashboard.ejs");
 			}
 			else
 			{
