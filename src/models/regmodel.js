@@ -1,47 +1,16 @@
-let conn=require("../config/db.js");
+let db=require("../config/db.js");
+exports.saveRegData=(...regData)=>{
 
-exports.saveUser=(...regData)=>{
-	conn.query("insert into usermaster values('0',?,?,?,?,?)",[...regData]);
-	return true;
+return new Promise((resolve,reject)=>{
+	
+	db.query("insert into usermaster value('0',?,?,?,?,?)",[regData[0],regData[1],regData[2],regData[3],regData[4]],(err,result)=>{
+	if(err){
+		reject(err);
+	}
+	else{
+		resolve("success");
+	}
+});
+
+});
 }
-
-exports.validateUserFromDB = (...userCred) => {
-	let promise=new Promise((resolve,reject)=>{
-		
-		conn.query("SELECT * FROM usermaster WHERE username = ? AND password = ?",[...userCred], (err, result) => {
- 		 if(err)
-		 {
-			reject(err);
-		 }
-		 else
-		 {
-			console.log(result);
-			resolve(result);
-		 }  
-    });
-
-	});
-		return promise;
-  };
-
-
- 
-exports.getLoginUserProfile = (loginUserId) => {
-	let promise=new Promise((resolve,reject)=>{
-		
-		conn.query("SELECT * FROM usermaster WHERE rid =?",[loginUserId], (err, result) => {
- 		 if(err)
-		 {
-			reject(err);
-		 }
-		 else
-		 {
-			console.log(result);
-			resolve(result);
-		 }  
-    });
-
-	});
-		return promise;
-  };
-

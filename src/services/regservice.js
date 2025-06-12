@@ -1,22 +1,9 @@
 
-let models=require("../models/regmodel.js");
+let bcrypt=require("bcryptjs");
+let regModel=require("../models/regmodel.js");
+exports.regServiceLogic=(...regdata)=>{	 
+	let hashedPassword=bcrypt.hashSync(regdata[2],8);
 
-class RegService{
-
-	acceptRegData(username,useremail,password,contact,type){
-		
-		let index=useremail.indexOf("@gmail.com");
-
-		if(index!=-1)
-		{
-			let result=models.saveUser(username,useremail,password,contact,type);
-			return  result?"Registration Success ":"Registration Failed";
-		}
-		else
-		{
-			return "You are not gamil user";
-		}
-	}
+	let result=regModel.saveRegData(regdata[0],regdata[1],hashedPassword,regdata[3],regdata[4])
+	return result;
 }
-
-module.exports=new RegService();
