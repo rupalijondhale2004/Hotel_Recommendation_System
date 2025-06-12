@@ -8,6 +8,7 @@ router.get("/",controller.homePage);
 router.get("/savereg",controller.regctrl);
 router.get("/login",controller.regLogin);
 router.post("/saveUser",controller.saveReg)
+router.post("/validate",controller.validate)
 module.exports=router;
 
 

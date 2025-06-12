@@ -1,5 +1,5 @@
 let regService=require("../services/regservice.js");
-
+let model=require("../models/regmodel.js");
 
 exports.homePage=(req,res)=>{
 	res.render("homepage.ejs");
@@ -23,5 +23,30 @@ exports.saveReg=(req,res)=>{
 exports.regLogin=(req,res)=>{
 	res.render("login.ejs",{msg:""});
 };
+exports.validate=(req,res)=>
+{
+	let{username,password,role}=req.body;
 
+	//role page render admin admin dash user 
+
+	let result=model.validate(username,password,role);
+	result.then((r)=>
+	{
+		if(r==="Sucesfull")
+		{
+			if(role==="Admin")
+			{
+				res.send("admin dashborad");
+			}
+			else
+			{
+				res.send("user dashboard");
+			}
+		}
+		else
+		{
+			res.render("login.ejs",{msg:r});
+		}
+	});
+};
 //rupa
