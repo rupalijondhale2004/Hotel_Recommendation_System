@@ -22,3 +22,5 @@ exports.saveReg=(req,res)=>{
 exports.regLogin=(req,res)=>{
 	res.render("login.ejs",{msg:""});
 };
+
+//hello
