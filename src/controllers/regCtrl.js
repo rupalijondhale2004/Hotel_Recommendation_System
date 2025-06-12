@@ -23,3 +23,4 @@ exports.regLogin=(req,res)=>{
 	res.render("login.ejs",{msg:""});
 };
 
+//rupa
