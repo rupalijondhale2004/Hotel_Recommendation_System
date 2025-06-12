@@ -14,7 +14,8 @@ exports.saveReg=(req,res)=>{
 	let result=regService.regServiceLogic(username,useremail,password,contact,type);
 	
 	result.then((r)=>{
-		res.render("register.ejs",{msg:r});
+		// res.render("register.ejs",{msg:r});
+		res.redirect("/login");
 	});
 	 
 };
