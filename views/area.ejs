@@ -4,98 +4,124 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Add Area</title>
+
+  <!-- Font Awesome for back arrow -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     .box {
       background-color: #fff;
-      width: 30%;
+      width: 40%;
       margin: 60px auto;
       padding: 40px;
       border-radius: 10px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      border: 1px solid #ccc;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     }
 
     h2 {
       text-align: center;
+      color: #ff8800;
       margin-bottom: 30px;
+      font-size: 28px;
+      text-transform: uppercase;
     }
 
     .form-group {
       margin-bottom: 20px;
     }
 
-    input[type="text"],
-    input[type="submit"] {
+    input[type="text"] {
       width: 100%;
-      padding: 12px;
-      margin-top: 6px;
+      height: 48px;
+      padding: 10px;
+      font-size: 16px;
       border: 1px solid #ccc;
       border-radius: 6px;
       box-sizing: border-box;
-      font-size: 16px;
-    }
-
-    input[type="submit"] {
-      background-color: #4CAF50;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    input[type="submit"]:hover {
-      background-color: #45a049;
     }
 
     .alert {
-      margin-top: 20px;
+      margin-bottom: 25px;
       padding: 15px;
       background-color: #ffcc00;
       color: #333;
       border-radius: 5px;
       text-align: center;
-    }
-
-    .back-button-container {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    .btn-back {
-      padding: 10px 20px;
-      background-color: #ff1493;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      display: inline-block;
       font-weight: bold;
     }
 
-    .btn-back:hover {
-      background-color: #e01383;
+    .btn-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+    .btn-orange {
+      background-color: #ff8800;
+      color: #fff;
+      font-weight: 600;
+      width: 160px;
+      height: 48px;
+      border: none;
+      border-radius: 5px;
+      text-align: center;
+      line-height: 48px;
+      transition: background 0.3s;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .btn-orange:hover {
+      background-color: #e67300;
+    }
+
+    @media (max-width: 768px) {
+      .box {
+        width: 90%;
+      }
+
+      .btn-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .btn-orange {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
+
   <div class="box">
+    <h2>Add New Area</h2>
+
     <form action="/savearea" method="post">
+
       <div class="form-group">
         <input type="text" id="area_name" name="area_name" placeholder="Enter Area Name" required />
       </div>
 
-      <input type="submit" value="Add Area" />
+      <!-- Message Box -->
+      <% if (msg) { %>
+        <div class="alert">
+          <strong><%= msg %></strong>
+        </div>
+      <% } %>
 
-      <div class="alert">
-        <strong><!-- Server message like <%= msg %> can go here --></strong>
+      <!-- Buttons -->
+      <div class="btn-row">
+        <input type="submit" class="btn-orange" value="Add Area" />
+        <a href="/" class="btn-orange"><i class="fas fa-arrow-left mr-1"></i>Back</a>
       </div>
 
-      <div class="back-button-container">
-        <a href="/" class="btn-back">← Back to Home Page</a>
-      </div>
     </form>
   </div>
 
