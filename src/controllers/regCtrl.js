@@ -1,5 +1,6 @@
 let regService=require("../services/regservice.js");
 let model=require("../models/regmodel.js");
+let db=require("../config/db.js");
 
 exports.homePage=(req,res)=>{
 	res.render("homepage.ejs");
@@ -56,9 +57,7 @@ exports.Citypage=(req,res)=>{
 exports.SaveCity=(req,res)=>
 {
  let {city_name,pincode}=req.body;
-if (!city_name || city_name.trim() === "") {
-    res.render("city.ejs", { msg: "City should not be null" });
-  }else{
+
 
 db.query("insert into citymaster  values('0',?,?)", [city_name,pincode],(err,result)=>
 {
@@ -68,6 +67,91 @@ db.query("insert into citymaster  values('0',?,?)", [city_name,pincode],(err,res
 		res.render("city.ejs",{msg:"city added successfully"});
 	}
 });
+
+};
+exports.Areapage=(req,res)=>{
+	res.render("area.ejs",{msg:""});
+};
+exports.SaveArea=(req,res)=>
+{
+ let {area_name}=req.body;
+
+
+db.query("insert into areamaster  values('0',?)", [area_name],(err,result)=>
+{
+	if(err){
+		res.render("area.ejs",{msg:"Some Problem Occured while Adding Area"});
+	}else{
+		res.render("area.ejs",{msg:"Area added successfully"});
+	}
+});
+
+};
+exports.Reviewpage=(req,res)=>{
+	res.render("review.ejs",{msg:""});
+};
+exports.SaveReview=(req,res)=>
+{
+ let {rev_text,rating,rev_date}=req.body;
+
+
+db.query("insert into reviewmaster  values('0',?,?,?)", [rev_text,rating,rev_date],(err,result)=>
+{
+	if(err){
+		res.render("review.ejs",{msg:"Some Problem Occured while Adding Review"});
+	}else{
+		res.render("review.ejs",{msg:"Review added successfully"});
+	}
+});
+
+};
+
+exports.Picpage=(req,res)=>{
+	res.render("hotelpic.ejs",{msg:""});
+};
+exports.SavePic=(req,res)=>
+{
+ let {filename}=req.body;
+
+
+db.query("insert into hotelpicjoin  values('0',?)", [filename],(err,result)=>
+{
+	if(err){
+		res.render("hotelpic.ejs",{msg:"Some Problem Occured while Adding Pic"});
+	}else{
+		res.render("hotelpic.ejs",{msg:"Pic added successfully"});
+	}
+});
+
+};
+exports.Hotelpage=(req,res)=>{
+	db.query("SELECT * FROM citymaster",(err,citresult)=>{
+	
+	db.query("SELECT * FROM areamaster",(err,arearesult)=>{
+
+	db.query("SELECT * FROM hotelpicjoin",(err,picresult)=>{
+     res.render("hotel.ejs",{Citdata:citresult,Areadata:arearesult,Picdata:picresult,msg:" "});
+})
+})
+})
 }
- 
+
+exports.SaveHotel=(req,res)=>
+{
+ let {hotel_name,hotel_address,city_id,area_id,hotel_email, hotel_contact,rating,pic_id}=req.body;
+
+
+db.query("insert into hotelmaster  values('0',?,?,?,?,?,?,?,?)", [hotel_name,hotel_address,city_id,area_id,hotel_email, hotel_contact,rating,pic_id],(err,result)=>
+{
+	db.query("SELECT * FROM citymaster",(err,citresult)=>{
+
+	db.query("SELECT * FROM areamaster",(err,areamaster)=>{
+
+	db.query("SELECT * FROM hotelpicjoin",(err,picresult)=>{
+     res.render("hotel.ejs",{Citdata:citresult,Areadata:arearesult,Picdata:picresult,msg:"Hotel added successfully "});
+})
+})
+})
+});
+
 };
