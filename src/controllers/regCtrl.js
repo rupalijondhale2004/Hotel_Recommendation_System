@@ -41,7 +41,7 @@ exports.validate=(req,res)=>
 			}
 			else
 			{
-				res.send("user dashboard");
+				res.render("userDashboard.ejs");
 			}
 		}
 		else
@@ -140,7 +140,7 @@ exports.SaveHotel=(req,res)=>
 {
  let {hotel_name,hotel_address,city_id,area_id,hotel_email, hotel_contact,rating,pic_id}=req.body;
 
-
+console.log(pic_id+ "  pic id is ")
 db.query("insert into hotelmaster  values('0',?,?,?,?,?,?,?,?)", [hotel_name,hotel_address,city_id,area_id,hotel_email, hotel_contact,rating,pic_id],(err,result)=>
 {
 	db.query("SELECT * FROM citymaster",(err,citresult)=>{
