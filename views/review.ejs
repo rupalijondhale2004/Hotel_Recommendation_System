@@ -3,93 +3,127 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Add Review</title>
+
+    <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
       integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
       crossorigin="anonymous"
     />
-		<style>
-		.box
-		{
-			box-shadow: 10px 8px 10px rgba(0, 0, 0, 0.1);
-			border-radius:10px;
-			width:40%;
-			height:100vh;
-			margin:auto;
-			margin-top:50px;
-            border: 1px solid;
-			background-color:transparent;
-			background-color: white;
-		}
-		.form-group
-		{
-			margin-top:80px;
-			margin-left:20px;
-			padding-top:80px;
-		}
-		
-	#inputState
-	{
-		width:400px;
-		height:40px;
-	}
-	
-    .back-button-container {
-    text-align: center;
-    margin-top: 20px;
-    }
 
-.btn-back {
-    display: inline-flex;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #ff1493;
-    color: #333; 
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 5px;
-    text-decoration: none;
-    }
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
-	</style>
+    <style>
+      .box {
+        box-shadow: 10px 8px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        width: 40%;
+        min-height: 60vh;
+        margin: 50px auto;
+        padding: 40px 30px;
+        border: 1px solid #ccc;
+        background-color: white;
+      }
 
-     </head>
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-control {
+        width: 400px;
+      }
+
+      .btn-back {
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #ff1493;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 5px;
+        text-decoration: none;
+      }
+
+      .btn-back i {
+        margin-right: 8px;
+      }
+
+      .back-button-container {
+        text-align: center;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+
   <body>
-	
-         <div class="box">
-	<form type="submit" action="/savereview" method="post" >
-
-	   <div class="form-group">
-		<input type="text" class="form-control" id="name"  name="rev_text "  style="width:400px"  placeholder="Enter Review "/>
-		
-	   </div>
-		<div class="form-group">
-		<input type="text" class="form-control" id="name"  name="rating "  style="width:400px"  placeholder="Enter Rating "/>
-		
-	   </div>
-		<div class="form-group">
-		<input type="text" class="form-control" id="name"  name="rev_date "  style="width:400px"  placeholder="Enter Review Date"/>
-		
-	   </div>
-
-	    	   <input type="submit" class="form-control" id="ns" value="Add Review" style="width:400px; margin-left:20px"/>
-		<br>
-		<br>
-	<div class="alert alert-warning alert-dismissible fade show" style="width:480px; margin-left:20px" role="alert">
-            <strong><%=msg%></strong>   
-          </div>
-
-	<div class="back-button-container">
-            <a href="/" class="btn-back">
-                <i class="fas fa-arrow-left"></i> Back to Home Page
-            </a>
+    <div class="box">
+      <form action="/savereview" method="post">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="rev_text"
+            name="rev_text"
+            placeholder="Enter Review"
+          />
         </div>
-         </div>
-	</form>
+
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="rating"
+            name="rating"
+            placeholder="Enter Rating"
+          />
         </div>
-       <script
+
+        <div class="form-group">
+          <input
+            type="datetime"
+            class="form-control"
+            id="rev_date"
+            name="rev_date"
+            placeholder="Enter Review Date"
+          />
+        </div>
+
+        <input
+          type="submit"
+          class="form-control btn btn-primary"
+          id="ns"
+          value="Add Review"
+          style="width: 400px"
+        />
+
+        <br /><br />
+
+        <!-- EJS alert message -->
+        <div
+          class="alert alert-warning alert-dismissible fade show"
+          style="width: 480px"
+          role="alert"
+        >
+          <strong><%= msg %></strong>
+        </div>
+
+        <div class="back-button-container">
+          <a href="/" class="btn-back">
+            <i class="fas fa-arrow-left"></i> Back to Home Page
+          </a>
+        </div>
+      </form>
+    </div>
+
+    <!-- Scripts -->
+    <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
       crossorigin="anonymous"
