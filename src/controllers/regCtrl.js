@@ -145,7 +145,7 @@ db.query("insert into hotelmaster  values('0',?,?,?,?,?,?,?,?)", [hotel_name,hot
 {
 	db.query("SELECT * FROM citymaster",(err,citresult)=>{
 
-	db.query("SELECT * FROM areamaster",(err,areamaster)=>{
+	db.query("SELECT * FROM areamaster",(err,arearesult)=>{
 
 	db.query("SELECT * FROM hotelpicjoin",(err,picresult)=>{
      res.render("hotel.ejs",{Citdata:citresult,Areadata:arearesult,Picdata:picresult,msg:"Hotel added successfully "});
@@ -155,3 +155,38 @@ db.query("insert into hotelmaster  values('0',?,?,?,?,?,?,?,?)", [hotel_name,hot
 });
 
 };
+
+
+
+exports.HotelView = (req, res) => {
+  const query = `
+    SELECT 
+      h.hotel_id,
+      p.filename,
+      h.hotel_name,
+      h.hotel_address,
+      c.city_name,
+      a.area_name,
+      h.hotel_email,
+      h.hotel_contact,
+      h.rating
+    FROM 
+      hotelmaster h
+    LEFT JOIN 
+      hotelpicjoin p ON h.pic_id = p.pic_id
+    JOIN 
+      citymaster c ON h.city_id = c.city_id
+    JOIN 
+      areamaster a ON h.area_id = a.area_id
+  `;
+
+  db.query(query, (err, result) => {
+    if (err) {
+      
+      return res.render("viewHotel.ejs"); 
+    } else {
+      res.render("viewHotel.ejs", { data: result });
+    }
+  });
+};
+

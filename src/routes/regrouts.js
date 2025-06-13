@@ -19,6 +19,7 @@ router.get("/hotel",controller.Hotelpage);
 router.post("/savehotel",controller.SaveHotel)
 router.get("/hotelpic",controller.Picpage);
 router.post("/savepic",controller.SavePic)
+router.get("/viewhotel",controller.HotelView);
 module.exports=router;
 
 
