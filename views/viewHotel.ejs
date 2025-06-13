@@ -55,22 +55,25 @@
   </style>
 </head>
 <body>
-data.forEach((item,index)=>{
-	<%
+
   <div class="container">
-    <div class="card">
-	 <p><%=(index+1)%></p>
-      <img src="<%= item.filename %>" />
-      <div class="card-content">
-        <h3><%= item. hotel_name %></h3>
-        <p><%= item. hotel_address %></p>
-	<p><%= item.city_name  %></p>
-        <p><%= item. area_name %></p>
-	<p><%= item.hotel_email  %></p>
-        <p><%= item.hotel_contact %></p>
-	<p><%= item.rating %></p>
+    <% data.forEach((item, index) => { %>
+      <div class="card">
+        <p><%= index + 1 %></p>
+        <img src="<%= item.filename %>" alt="Hotel Image"/>
+
+        <div class="card-content">
+          <h3><%= item.hotel_name %></h3>
+          <p><%= item.hotel_address %></p>
+          <p><%= item.city_name %></p>
+          <p><%= item.area_name %></p>
+          <p><%= item.hotel_email %></p>
+          <p><%= item.hotel_contact %></p>
+          <p>Rating: <%= item.rating %></p>
+        </div>
       </div>
-    </div>
-%>})
-    </body>
+    <% }); %>
+  </div>
+
+</body>
 </html>
