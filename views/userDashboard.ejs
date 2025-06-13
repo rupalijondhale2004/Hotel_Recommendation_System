@@ -24,20 +24,21 @@
 
     /* Navbar */
     .navbar {
-  width: 100%;
-  height: 60px;
-  background: linear-gradient(to right, #f7b733, #fc4a1a);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 30px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-
+      width: 100%;
+      height: 60px;
+      background: #e65c00;  /* fallback for old browsers */
+      background: -webkit-linear-gradient(to bottom, #F9D423, #e65c00);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to bottom, #F9D423, #e65c00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
     .navbar-left h3 {
       font-size: 24px;
       color:white;
@@ -54,14 +55,15 @@
     }
 
     .profile-icon {
-  font-size: 28px;
-  color: white;
-  transition: color 0.3s;
-}
+      font-size: 28px;
+      color: white;
+      transition: color 0.3s;
+    }
 
     .profile-icon:hover {
-  color: #ddd;
-}
+      color: #ddd;
+    }
+
     .profile-menu {
       display: none;
       position: absolute;
@@ -100,9 +102,9 @@
     /* Sidebar */
     .sidebar {
       width: 250px;
-      background: #fc4a1a;  /* fallback for old browsers */
-      background: -webkit-linear-gradient(to right, #f7b733, #fc4a1a);  /* Chrome 10-25, Safari 5.1-6 */
-      background: linear-gradient(to right, #f7b733, #fc4a1a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      background: #e65c00;  /* fallback for old browsers */
+      background: -webkit-linear-gradient(to bottom, #F9D423, #e65c00);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to bottom, #F9D423, #e65c00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
       color: #fff;
       padding: 30px 20px;
       height: 100%;
@@ -130,7 +132,7 @@
     }
 
     .sidebar-menu li:hover {
-      background-color: #007BFF;
+      background-color: orangered;
       color: #fff;
     }
 
