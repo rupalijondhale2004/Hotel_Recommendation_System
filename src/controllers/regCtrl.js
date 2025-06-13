@@ -49,4 +49,25 @@ exports.validate=(req,res)=>
 		}
 	});
 };
-//rupa
+exports.Citypage=(req,res)=>{
+	res.render("city.ejs",{msg:""});
+};
+
+exports.SaveCity=(req,res)=>
+{
+ let {city_name,pincode}=req.body;
+if (!city_name || city_name.trim() === "") {
+    res.render("city.ejs", { msg: "City should not be null" });
+  }else{
+
+db.query("insert into citymaster  values('0',?,?)", [city_name,pincode],(err,result)=>
+{
+	if(err){
+		res.render("city.ejs",{msg:"Some Problem Occured while Adding course"});
+	}else{
+		res.render("city.ejs",{msg:"city added successfully"});
+	}
+});
+}
+ 
+};
