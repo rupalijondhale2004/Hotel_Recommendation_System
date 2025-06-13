@@ -1,99 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
-      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-      crossorigin="anonymous"
-    />
-		<style>
-		.box
-		{
-			box-shadow: 10px 8px 10px rgba(0, 0, 0, 0.1);
-			border-radius:10px;
-			width:40%;
-			height:60vh;
-			margin:auto;
-			margin-top:50px;
-			background-color:transparent;
-			background-color: white;
-            border: 1px solid;
-		}
-		.form-group
-		{
-			margin-top:80px;
-			margin-left:20px;
-			padding-top:80px;
-		}
-		
-	#inputState
-	{
-		width:400px;
-		height:40px;
-	}
-		.back-button-container {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.btn-back {
-    display: inline-flex;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #ff1493;
-    color: #333; 
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 5px;
-    text-decoration: none;
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Area</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
     }
 
-	</style>
+    .box {
+      background-color: #fff;
+      width: 30%;
+      margin: 60px auto;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      border: 1px solid #ccc;
+    }
 
-     </head>
-  <body>
-	
-         <div class="box">
-	<form type="submit" action="/savearea" method="post" >
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-	   <div class="form-group">
-		<input type="text" class="form-control" id="name"  name="area_name"  style="width:400px"  placeholder="Enter Area Name"/>
-		
-	   </div>
-		
-	    	   <input type="submit" class="form-control" id="ns" value="Add Area" style="width:400px; margin-left:20px"/>
-		<br>
-		<br>
-	<div class="alert alert-warning alert-dismissible fade show" style="width:480px; margin-left:20px" role="alert">
-            <strong><%=msg%></strong>   
-          </div>
+    .form-group {
+      margin-bottom: 20px;
+    }
 
-	<div class="back-button-container">
-            <a href="/" class="btn-back">
-                <i class="fas fa-arrow-left"></i> Back to Home Page
-            </a>
-        </div>
-         </div>
-	</form>
-        </div>
-       <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
-      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
-      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+    input[type="text"],
+    input[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .alert {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #ffcc00;
+      color: #333;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .back-button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .btn-back {
+      padding: 10px 20px;
+      background-color: #ff1493;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      display: inline-block;
+      font-weight: bold;
+    }
+
+    .btn-back:hover {
+      background-color: #e01383;
+    }
+  </style>
+</head>
+<body>
+    <%- include('adminDashboard.ejs') -%>
+  <div class="box">
+    <form action="/savearea" method="post">
+      <div class="form-group">
+        <input type="text" id="area_name" name="area_name" placeholder="Enter Area Name" required />
+      </div>
+
+      <input type="submit" value="Add Area" />
+
+      <div class="alert">
+        <strong><!-- Server message like <%= msg %> can go here --></strong>
+      </div>
+
+      <div class="back-button-container">
+        <a href="/" class="btn-back">← Back to Home Page</a>
+      </div>
+    </form>
+  </div>
+
+</body>
 </html>
