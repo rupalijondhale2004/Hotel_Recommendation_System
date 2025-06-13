@@ -57,21 +57,24 @@
         <input type="text" class="form-control" name="hotel_address" placeholder="Enter Hotel Address" />
       </div>
 
-      <div class="form-group">
-        <select name="city_id" class="form-control">
-          <option selected>Select City</option>
-          <option value="1">Mumbai</option>
-          <option value="2">Pune</option>
-        </select>
-      </div>
+     </div>
+		<div class="form-group">
+		<select id="inputState" name="  city_id" class="se">
+  <option selected>Select City</option>
+  <% Citdata.forEach((item,index) => { %>
+    <option value="<%= item.  city_id  %>"><%= item.city_name %></option>
+  <% }); %>
+</select>
+	</div>
 
-      <div class="form-group">
-        <select name="area_id" class="form-control">
-          <option selected>Select Area</option>
-          <option value="1">Andheri</option>
-          <option value="2">Baner</option>
-        </select>
-      </div>
+		<div class="form-group">
+		<select id="inputState" name="area_id" class="se">
+  <option selected>Select Course</option>
+  <% Areadata.forEach((item,index) => { %>
+    <option value="<%= item.area_id %>"><%= item.area_name  %></option>
+  <% }); %>
+</select>
+	</div>
 
       <div class="form-group">
         <input type="email" class="form-control" name="hotel_email" placeholder="Enter Hotel Email" />
@@ -87,9 +90,9 @@
 
       <input type="submit" class="form-control btn btn-primary" value="Add Hotel" />
 
-      <div class="alert alert-warning" role="alert">
-        Message area for alerts or success.
-      </div>
+    <div class="alert alert-warning alert-dismissible fade show" style="width:400px; margin-left:50px" role="alert">
+            <strong><%=msg%></strong>   
+          </div>
 
     </form>
 
