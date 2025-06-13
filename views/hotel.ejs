@@ -96,10 +96,10 @@
       </div>
 
       <div class="form-group">
-        <select id="inputState" name="pic_id " class="form-control">
+        <select id="inputState" name="pic_id" class="form-control">
           <option selected>Select Images</option>
           <% Picdata.forEach((item,index) => { %>
-    <option value="<%= item.pic_id  %>"><%= item.filename  %></option>
+<option value="<%= item.pic_id %>"><%= item.filename %></option>
   <% }); %>
 
         </select>
