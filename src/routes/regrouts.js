@@ -15,6 +15,7 @@ router.post("/save",controller.SaveCity)
 router.get("/areaDash",controller.AreaDash);
 router.get("/area",controller.Areapage);
 router.post("/savearea",controller.SaveArea)
+router.get("/reviewDash",controller.ReviewDash);
 router.get("/review",controller.Reviewpage);
 router.post("/savereview",controller.SaveReview)
 router.get("/hotelDash",controller.HotelDash);
