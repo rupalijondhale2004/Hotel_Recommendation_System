@@ -116,22 +116,74 @@ exports.AreaDash=(req,res)=>{
 
 };
 exports.Areapage=(req,res)=>{
-	res.render("area.ejs",{msg:""});
-};
-exports.SaveArea=(req,res)=>
-{
- let {area_name}=req.body;
 
+	async function getdata() {
 
-db.query("insert into areamaster  values('0',?)", [area_name],(err,result)=>
-{
-	if(err){
-		res.render("area.ejs",{msg:"Some Problem Occured while Adding Area"});
-	}else{
-		res.render("area.ejs",{msg:"Area added successfully"});
+			try
+			{
+				let r=await model.fecthcity();
+				res.render("area.ejs",{Citdata:r,msg:""});
+			}
+			catch(err)
+			{
+				res.render("area.ejs",{Citdata:[],msg:""});
+			}
 	}
-});
+	getdata();
+	
+};
+exports.SaveArea=async(req,res)=>
+{
+ let {area_name,city_id}=req.body;
 
+
+// db.query("insert into areamaster  values('0',?)", [area_name],(err,result)=>
+// {
+// 	if(err){
+// 		res.render("area.ejs",{msg:"Some Problem Occured while Adding Area"});
+// 	}else{
+// 		res.render("area.ejs",{msg:"Area added successfully"});
+// 	}
+// }); 
+let r=await model.fecthcity();
+try
+{
+db.query("insert into areamaster  values('0',?)", [area_name],(err,result)=>
+ {
+		if(err)
+		{
+			console.log(err);
+			res.render("area.ejs",{Citdata:r,msg:""});
+		}
+		else{
+			db.query("select area_id from areamaster where area_name=? order by area_id desc limit 1",[area_name],(err,result1)=>
+			{
+					if(err)
+					{
+						console.log(err);
+							res.render("area.ejs",{Citdata:r,msg:""});
+					}
+					else
+					{
+						db.query("insert into cityareajoin values(?,?)",[city_id,result1[0].area_id],(err,result3)=>{
+							if(err)
+							{
+								console.log(err);
+									res.render("area.ejs",{Citdata:r,msg:""});
+							}
+							else{
+									res.render("area.ejs",{Citdata:r,msg:"Area Added Sucesfully"});
+							}
+						});
+					}
+			});
+		}
+ });	
+}
+catch(err)
+{
+	res.render("area.ejs",{Citdata:r,msg:""});
+}
 };
 exports.ViewAreapage=(req, res) => {
 	db.query("select * from areamaster",(err,result)=>
@@ -224,7 +276,7 @@ exports.ViewHotelPicpage=(req, res) => {
 }
 exports.HotelPicDelete=(req, res) => {
   let  pic_id = parseInt(req.query.picid.trim());
-  db.query("delete from hotelpicjoin where pic_id=?", [  pic_id], (err, result) => {
+  db.query("delete from hotelpicjoin where pic_id=?", [pic_id], (err, result) => {
 });
   db.query("select * from  hotelpicjoin;", (err, result) => {
     if (err) {
@@ -347,4 +399,9 @@ exports.HotelView = (req, res) => {
     }
   });
 };
+
+exports.getareadata=(req,res)=>
+{
+	res.send("hello");
+}
 

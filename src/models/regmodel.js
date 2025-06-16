@@ -43,4 +43,21 @@ exports.validate=(username,password,role)=>
 		});
 	});
 }
-
+exports.fecthcity=()=>
+{
+		return new Promise((resolve,reject)=>
+		{
+				db.query("SELECT * FROM citymaster",(err,citresult)=>{
+			if(err)
+			{
+				// res.render("area.ejs",{Citdata:[],msg:""});
+				reject(err)
+			}
+			else
+			{
+			// res.render("area.ejs",{Citdata:citresult,msg:""});
+				resolve(citresult);
+			}
+	});
+		});
+}
