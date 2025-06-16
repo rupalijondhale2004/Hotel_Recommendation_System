@@ -80,6 +80,11 @@ db.query("insert into citymaster  values('0',?,?)", [city_name,pincode],(err,res
 });
 
 };
+exports.AreaDash=(req,res)=>{
+
+	res.render("areaDashboard.ejs");
+
+};
 exports.Areapage=(req,res)=>{
 	res.render("area.ejs",{msg:""});
 };
@@ -116,7 +121,11 @@ db.query("insert into reviewmaster  values('0',?,?,?)", [rev_text,rating,rev_dat
 });
 
 };
+exports.HotelPicDash=(req,res)=>{
 
+	res.render("hotelPicDashboard.ejs");
+
+};
 exports.Picpage=(req,res)=>{
 	res.render("hotelpic.ejs",{msg:""});
 };

@@ -20,6 +20,7 @@ router.post("/savereview",controller.SaveReview)
 router.get("/hotelDash",controller.HotelDash);
 router.get("/hotel",controller.Hotelpage);
 router.post("/savehotel",controller.SaveHotel)
+router.get("/hotelpicDash",controller.HotelPicDash);
 router.get("/hotelpic",controller.Picpage);
 router.post("/savepic",controller.SavePic)
 router.get("/viewhotel",controller.HotelView);
