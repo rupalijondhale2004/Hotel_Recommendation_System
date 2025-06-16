@@ -103,6 +103,11 @@ db.query("insert into areamaster  values('0',?)", [area_name],(err,result)=>
 });
 
 };
+exports.ReviewDash=(req,res)=>{
+
+	res.render("reviewDashboard.ejs");
+
+};
 exports.Reviewpage=(req,res)=>{
 	res.render("review.ejs",{msg:""});
 };
