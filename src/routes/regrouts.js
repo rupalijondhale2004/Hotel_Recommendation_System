@@ -12,6 +12,7 @@ router.post("/validate",controller.validate);
 router.get("/cityDash",controller.CityDash);
 router.get("/city",controller.Citypage);
 router.post("/save",controller.SaveCity)
+router.get("/areaDash",controller.AreaDash);
 router.get("/area",controller.Areapage);
 router.post("/savearea",controller.SaveArea)
 router.get("/review",controller.Reviewpage);
