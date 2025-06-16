@@ -82,15 +82,13 @@
         </div>
 
         <!-- Message Box -->
-        <% if (msg) { %>
-          <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong><%= msg %></strong>
+        <div class="alert alert-warning alert-dismissible fade show" style="width:350px; margin-left:20px" role="alert">
+            <strong><%=msg%></strong>   
           </div>
-        <% } %>
 
         <!-- Buttons Side-by-Side -->
         <div class="btn-row">
-          <input type="submit" class="btn btn-orange" value="Add Image File" />
+          <input type="submit" class="btn btn-orange" id="ns" value="Add Image File" />
           <a href="/" class="btn btn-orange d-flex align-items-center justify-content-center">← Back</a>
         </div>
       </form>
