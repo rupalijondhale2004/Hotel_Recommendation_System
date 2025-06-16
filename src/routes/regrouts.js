@@ -27,6 +27,8 @@ router.get("/hotel",controller.Hotelpage);
 router.post("/savehotel",controller.SaveHotel)
 router.get("/hotelpicDash",controller.HotelPicDash);
 router.get("/hotelpic",controller.Picpage);
+router.get("/viewHotePic",controller.ViewHotelPicpage);
+router.get("/deleteHotelPicById",controller.HotelPicDelete);
 router.post("/savepic",controller.SavePic)
 router.get("/viewhotel",controller.HotelView);
 module.exports=router;

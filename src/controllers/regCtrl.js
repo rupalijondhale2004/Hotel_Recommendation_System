@@ -96,21 +96,7 @@ exports.ViewCitypage=(req, res) => {
 	}
 });
 }
-exports.ViewAreapage=(req, res) => {
-	db.query("select * from areamaster",(err,result)=>
-{
-	if(err)
-	{
-		res.render("viewArea.ejs");
-
-	}
-	else
-	{
-		res.render("viewArea.ejs",{Areadata:result});
-
-	}
-});
-}
+ 
 exports.CityDelete=(req, res) => {
   let city_id = parseInt(req.query.cityid.trim());
   db.query("delete from citymaster where city_id=?", [city_id], (err, result) => {
@@ -147,9 +133,24 @@ db.query("insert into areamaster  values('0',?)", [area_name],(err,result)=>
 });
 
 };
+exports.ViewAreapage=(req, res) => {
+	db.query("select * from areamaster",(err,result)=>
+{
+	if(err)
+	{
+		res.render("viewArea.ejs");
+
+	}
+	else
+	{
+		res.render("viewArea.ejs",{Areadata:result});
+
+	}
+});
+}
 exports.AreaDelete=(req, res) => {
   let  area_id = parseInt(req.query.areaid.trim());
-  db.query("delete from citymaster where city_id=?", [ area_id], (err, result) => {
+  db.query("delete from areamaster where area_id=?", [ area_id], (err, result) => {
 });
   db.query("select * from areamaster", (err, result) => {
     if (err) {
@@ -204,6 +205,33 @@ db.query("insert into hotelpicjoin  values('0',?)", [filename],(err,result)=>
 	}
 });
 
+};
+exports.ViewHotelPicpage=(req, res) => {
+	db.query("select * from  hotelpicjoin;",(err,result)=>
+{
+	if(err)
+	{
+		res.render("viewHotelpic.ejs");
+
+	}
+	else
+	{
+		res.render("viewHotelpic.ejs",{HotelPicdata:result});
+
+	}
+});
+}
+exports.HotelPicDelete=(req, res) => {
+  let   pic_id = parseInt(req.query.picid.trim());
+  db.query("delete from hotelpicjoin where city_id=?", [  pic_id], (err, result) => {
+});
+  db.query("select * from  hotelpicjoin;", (err, result) => {
+    if (err) {
+      console.log("Some Problem Occured " + err);
+    } else {
+      res.render("viewHotelpic.ejs", { HotelPicdata: result });
+    }
+  });
 };
 exports.HotelDash=(req,res)=>{
 
