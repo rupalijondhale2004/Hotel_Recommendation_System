@@ -199,6 +199,7 @@ exports.SavePic=(req,res)=>
 db.query("insert into hotelpicjoin  values('0',?)", [filename],(err,result)=>
 {
 	if(err){
+		console.log(err);
 		res.render("hotelpic.ejs",{msg:"Some Problem Occured while Adding Pic"});
 	}else{
 		res.render("hotelpic.ejs",{msg:"Pic added successfully"});
