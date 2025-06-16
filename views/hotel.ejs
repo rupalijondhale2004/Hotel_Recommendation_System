@@ -88,7 +88,7 @@
 
         <div class="form-group col-md-6">
           <label>City</label>
-          <select name="city_id" class="form-control" change="fetcharea(this.value)" id="ns">
+          <select name="city_id" class="form-control" onchange="fetcharea(this.value)" id="ns">
             <option selected disabled>Select City</option>
             <% Citdata.forEach((item, index) => { %>
               <option value="<%= item.city_id %>"><%= item.city_name %></option>
