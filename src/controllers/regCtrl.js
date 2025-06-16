@@ -50,10 +50,21 @@ exports.validate=(req,res)=>
 		}
 	});
 };
+
+exports.CityDash=(req,res)=>{
+
+	res.render("cityDashboard.ejs");
+
+};
 exports.Citypage=(req,res)=>{
+
 	res.render("city.ejs",{msg:""});
+
 };
 
+
+
+ 
 exports.SaveCity=(req,res)=>
 {
  let {city_name,pincode}=req.body;
@@ -67,6 +78,11 @@ db.query("insert into citymaster  values('0',?,?)", [city_name,pincode],(err,res
 		res.render("city.ejs",{msg:"city added successfully"});
 	}
 });
+
+};
+exports.AreaDash=(req,res)=>{
+
+	res.render("areaDashboard.ejs");
 
 };
 exports.Areapage=(req,res)=>{
@@ -105,7 +121,11 @@ db.query("insert into reviewmaster  values('0',?,?,?)", [rev_text,rating,rev_dat
 });
 
 };
+exports.HotelPicDash=(req,res)=>{
 
+	res.render("hotelPicDashboard.ejs");
+
+};
 exports.Picpage=(req,res)=>{
 	res.render("hotelpic.ejs",{msg:""});
 };
@@ -122,6 +142,11 @@ db.query("insert into hotelpicjoin  values('0',?)", [filename],(err,result)=>
 		res.render("hotelpic.ejs",{msg:"Pic added successfully"});
 	}
 });
+
+};
+exports.HotelDash=(req,res)=>{
+
+	res.render("hotelDashboard.ejs");
 
 };
 exports.Hotelpage=(req,res)=>{
