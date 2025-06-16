@@ -88,7 +88,7 @@
           <select name="city_id" class="form-control">
             <option selected disabled>Select City</option>
             <% Citdata.forEach((item, index) => { %>
-              <option value="<%= item.city_id %>"><%= item.city_name %></option>
+              <a href="/demo"><option value="<%= item.city_id %>"><%= item.city_name %></option></a>
             <% }); %>
           </select>
         </div>
