@@ -80,6 +80,23 @@ db.query("insert into citymaster  values('0',?,?)", [city_name,pincode],(err,res
 });
 
 };
+
+exports.ViewCitypage=(req, res) => {
+	db.query("select * from citymaster",(err,result)=>
+{
+	if(err)
+	{
+		res.render("viewCity.ejs");
+
+	}
+	else
+	{
+		res.render("viewCity.ejs",{Citydata:result});
+
+	}
+});
+}
+
 exports.AreaDash=(req,res)=>{
 
 	res.render("areaDashboard.ejs");
