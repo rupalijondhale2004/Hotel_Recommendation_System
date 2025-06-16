@@ -223,8 +223,8 @@ exports.ViewHotelPicpage=(req, res) => {
 });
 }
 exports.HotelPicDelete=(req, res) => {
-  let   pic_id = parseInt(req.query.picid.trim());
-  db.query("delete from hotelpicjoin where city_id=?", [  pic_id], (err, result) => {
+  let  pic_id = parseInt(req.query.picid.trim());
+  db.query("delete from hotelpicjoin where pic_id=?", [  pic_id], (err, result) => {
 });
   db.query("select * from  hotelpicjoin;", (err, result) => {
     if (err) {
@@ -271,6 +271,49 @@ db.query("insert into hotelmaster  values('0',?,?,?,?,?,?,?,?)", [hotel_name,hot
 
 };
 
+exports.ViewHotelAdminpage = (req, res) => {
+  const query = `
+    SELECT 
+      h.hotel_id,
+      p.filename,
+      h.hotel_name,
+      h.hotel_address,
+      c.city_name,
+      a.area_name,
+      h.hotel_email,
+      h.hotel_contact,
+      h.rating
+    FROM 
+      hotelmaster h
+    LEFT JOIN 
+      hotelpicjoin p ON h.pic_id = p.pic_id
+    JOIN 
+      citymaster c ON h.city_id = c.city_id
+    JOIN 
+      areamaster a ON h.area_id = a.area_id
+  `;
+
+  db.query(query, (err, result) => {
+    if (err) {
+      
+      return res.render("viewHotelAdmin.ejs"); 
+    } else {
+      res.render("viewHotelAdmin.ejs", { HotelAdmindata: result });
+    }
+  });
+};
+exports.HotelAdminDelete=(req, res) => {
+  let  hotel_id = parseInt(req.query.hoteladminid.trim());
+  db.query("delete from hotelmaster where hotel_id=?", [hotel_id], (err, result) => {
+});
+  db.query("select * from hotelmaster", (err, result) => {
+    if (err) {
+      console.log("Some Problem Occured " + err);
+    } else {
+      res.render("viewHotelAdmin.ejs", { HotelAdmindata: result });
+    }
+  });
+};
 
 
 exports.HotelView = (req, res) => {
