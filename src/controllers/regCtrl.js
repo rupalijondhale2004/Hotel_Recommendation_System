@@ -96,6 +96,18 @@ exports.ViewCitypage=(req, res) => {
 	}
 });
 }
+exports.CityDelete=(req, res) => {
+  let city_id = parseInt(req.query.cityid.trim());
+  db.query("delete from citymaster where city_id=?", [city_id], (err, result) => {
+});
+  db.query("select * from citymaster", (err, result) => {
+    if (err) {
+      console.log("Some Problem Occured " + err);
+    } else {
+      res.render("viewCity.ejs", { Citydata: result });
+    }
+  });
+};
 
 exports.AreaDash=(req,res)=>{
 
