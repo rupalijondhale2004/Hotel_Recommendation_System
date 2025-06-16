@@ -51,9 +51,14 @@ exports.validate=(req,res)=>
 	});
 };
 exports.Citypage=(req,res)=>{
+
 	res.render("city.ejs",{msg:""});
+
 };
 
+
+
+ 
 exports.SaveCity=(req,res)=>
 {
  let {city_name,pincode}=req.body;
@@ -122,6 +127,11 @@ db.query("insert into hotelpicjoin  values('0',?)", [filename],(err,result)=>
 		res.render("hotelpic.ejs",{msg:"Pic added successfully"});
 	}
 });
+
+};
+exports.HotelDash=(req,res)=>{
+
+	res.render("hotelDashboard.ejs");
 
 };
 exports.Hotelpage=(req,res)=>{
