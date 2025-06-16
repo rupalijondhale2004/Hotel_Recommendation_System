@@ -109,7 +109,7 @@
         <input type="text" id="area_name" name="area_name" placeholder="Enter Area Name" required />
       </div>
        <div class="form-group">
-          <select name="city_id" class="form-control">
+          <select name="city_id">
             <option selected disabled>Select City</option>
             <% Citdata.forEach((item, index) => { %>
               <option value="<%=item.city_id%>"><%=item.city_name%></option>
