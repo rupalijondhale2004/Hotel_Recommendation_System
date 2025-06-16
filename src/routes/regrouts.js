@@ -9,6 +9,7 @@ router.get("/savereg",controller.regctrl);
 router.get("/login",controller.regLogin);
 router.post("/saveUser",controller.saveReg);
 router.post("/validate",controller.validate);
+router.get("/cityDash",controller.CityDash);
 router.get("/city",controller.Citypage);
 router.post("/save",controller.SaveCity)
 router.get("/area",controller.Areapage);

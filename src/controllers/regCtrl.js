@@ -50,6 +50,12 @@ exports.validate=(req,res)=>
 		}
 	});
 };
+
+exports.CityDash=(req,res)=>{
+
+	res.render("cityDashboard.ejs");
+
+};
 exports.Citypage=(req,res)=>{
 
 	res.render("city.ejs",{msg:""});
