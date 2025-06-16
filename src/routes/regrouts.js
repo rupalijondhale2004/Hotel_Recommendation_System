@@ -25,9 +25,11 @@ router.post("/savereview",controller.SaveReview)
 router.get("/hotelDash",controller.HotelDash);
 router.get("/hotel",controller.Hotelpage);
 router.post("/savehotel",controller.SaveHotel)
+router.get("/viewhotelAdmin",controller.ViewHotelAdminpage);
+router.get("/deleteHotelAdminById",controller.HotelAdminDelete);
 router.get("/hotelpicDash",controller.HotelPicDash);
 router.get("/hotelpic",controller.Picpage);
-router.get("/viewHotePic",controller.ViewHotelPicpage);
+router.get("/viewHotelpic",controller.ViewHotelPicpage);
 router.get("/deleteHotelPicById",controller.HotelPicDelete);
 router.post("/savepic",controller.SavePic)
 router.get("/viewhotel",controller.HotelView);
