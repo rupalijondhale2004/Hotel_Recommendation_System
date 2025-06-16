@@ -144,6 +144,7 @@
         <tr>
           <th>AREA_ID</th>
           <th>AREA_NAME</th>
+           <th>CITY_NAME</th>
           <th>DELETE</th>
         </tr>
       </thead>
@@ -156,6 +157,7 @@
           <tr>
             <td data-label="AREA_ID"><%= index + 1 %></td>
             <td data-label="AREA_NAME"><%= item.area_name %></td>
+           <td data-label="CITY_NAME"><%= item.city_name %></td>
             <td data-label="DELETE">
               <a href="/deleteAreaById?areaid=<%= item.area_id %>" onclick="return confirm('Are you sure you want to delete this area?');" style="color:red">Delete</a>
             </td>
