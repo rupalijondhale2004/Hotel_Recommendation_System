@@ -550,16 +550,16 @@ exports.getareadata=(req,res)=>
 }
 
 exports.CustomerView=(req, res) => {
-	db.query("select * from usermaster where type='User'",(err,result)=>
+	db.query("select * from usermaster where type=?",["user"],(err,result)=>
 {
 	if(err)
 	{
-		res.render("viewCustomer.ejs");
+		res.render("viewCustomer.ejs",{Userdata:[]});
 
 	}
 	else
 	{
-		res.render("viewCustomer.ejs",{UserData:result});
+		res.render("viewCustomer.ejs",{Userdata:result});
 
 	}
 });
@@ -569,7 +569,12 @@ exports.CustomerView=(req, res) => {
 
 exports.ViewHotelDash=(req,res)=>{
 
-
-	res.render("viewHotelDashboard.ejs");
-
+db.query("SELECT * FROM citymaster",(err,citresult)=>{
+	
+	res.render("viewHotelDashboard.ejs",{Citdata:citresult});
+});
 };
+
+
+
+
