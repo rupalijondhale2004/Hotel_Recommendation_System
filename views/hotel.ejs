@@ -109,9 +109,12 @@
           </select>
         </div>
 
-        <select name="area_id" class="form-control" id="area" required>
-  <option value="" disabled selected>Select Area</option>
+        <div class="form-group col-md-6">
+          <label>City</label>
+            <select name="area_id" class="form-control" id="area" required>
+              <option value="" disabled selected>Select Area</option>
 </select>
+</div>
 
         <!-- <div class="form-group col-md-6">
           <label>Area</label>
@@ -161,13 +164,7 @@
       </div>
     </form>
   </div>
-<script> document.getElementById("area").innerHTML = '<option value="" disabled selected>Select Area</option>';
-data.forEach((ele) => {
-  let tag = document.createElement("option");
-  tag.value = ele.area_id;
-  tag.innerHTML = ele.area_name;
-  document.getElementById("area").appendChild(tag);
-});</script>
+
   
 
 </body>

@@ -323,75 +323,86 @@ border-radius: 20px;
     border-radius: 6px;
     font-size: 16px;
 }
-.Footer
-            {
-                width: 100%;
-                height: 60vh;
-                display: flex;
-                flex-direction: row;
-                margin-top: 10px;
-                justify-content: space-around;
-                margin-top: 20px;
-                background-color: white;
-            }
-.Footer h3{
-    margin-top: 30px;
+/* Footer Section */
+.footer {
+    width: 100%;
+    background-color:  white(0, 0, 0, 0.6);;
+    padding: 40px 80px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    margin-top: 35px;
+    box-sizing: border-box;
 }
 
-            .Footer .One
-            {
-                width: 20%;
-                height: 50vh;
-                
-                color: black;
-            }
-            .Footer .One p{
-                padding-left: 20px;
-            }
-            .Footer .Tow
-            {
-                width: 20%;
-                height: 50vh;
-               
-                color: black;
-                display: flex;
-                flex-direction: column;
-            }
-            .Footer .Tow .sup1
-            {
-                width: 100%;
-                height: 20vh;
-                display: flex;
-                flex-direction: row;
-               
+.footer .ft1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #d4c766;
+    padding-bottom: 20px;
+}
 
-            }
-            .Footer .Tow  .sup1 img
-            {
-                width: 20%;
-                height: 8vh;
-                margin-right: 10px;
-            }
-            .Footer .Three
-            {
-                width: 20%;
-                height: 50vh;
-                
-                color: black;
-            }
-            .Footer .Three p{
-                padding-left: 20px;
-            }
-            .Footer .Five
-            {
-                width: 20%;
-                height: 50vh;
-               
-                color: black;
-            }
-            .Footer .Five p{
-                padding-left: 20px;
-            }
+.footer .ft1 .ft11 h1 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #222;
+}
+
+.footer .ft1 .ft12 ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.footer .ft1 .ft12 ul li i {
+    color: #333;
+    transition: color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.footer .ft1 .ft12 ul li i:hover {
+    color: #007BFF;
+    transform: scale(1.2);
+}
+
+.footer .ft2 {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer .ft2 .ft21 {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer .ft2 .ft21 ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer .ft2 .ft21 li {
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #444;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.footer .ft2 .ft21 li:hover {
+    color: #007BFF;
+}
+
+.footer .ft2 .ft21 h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+
             
 </style>
  <script type="text/javascript">
@@ -549,43 +560,51 @@ Start your journey with us and experience comfort, convenience, and confidenceâ€
     </div>
   </div>
 </div>
-<div class="Footer">
-                <div class="One">
-                    <h3>Navigation</h3>
-                    <p>--> Home </p>
-                    <hr>
-                    <p>--> About </p>
-                    <hr>
-                    <p>--> Gallery </p>
-                    <hr>
-                    <p>--> Contat </p>
-                    <hr>
-                </div>
-                <div class="Tow">
-                    <h3>Blog Post</h3>
-                    <div class="sup1">
-                      <img src="image/hotel5.avif"/>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium unde autem tempora, </p>
-                </div>
-                <hr>
-                <div class="sup1">
-                    <img src="image/hotel2.webp"/>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium unde  </p>
-                </div>
-                </div>
-            <div class="Three">
-                <h3>Tweeter</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<label style="color: blue;"> Doloremque alias mollitia</label> necessitatibus asperiores, qui  exercitationem atque</p>
-                <hr>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<label style="color: blue;">  Reprehenderit accusantium hic</label> asperiores enim  voluptate inventore rerum</p>
-            </div>
-            <div class="Five">
-                <h3>Contact Us</h3>
-                <p>A/P-Bahirewadi,Tal-Ajara,Dist-Kolhapur Ganpti Math Near by SBI,Kakade Teres Warje Malvadi Pune</p>
-                <p>7057333895</p>
-                <p>9578543217</p>
-                <p>rupalijondh@117gmail.com</p>
-                </div>
+<!-- Footer -->
+    <div class="footer">
+      <div class="ft1">
+        <div class="ft11">
+          <h1>Hotels.com</h1>
+        </div>
+        <div class="ft12">
+          <ul>
+            <li><i class="fa fa-facebook-official" style="font-size:24px"></i></li>
+            <li><i class="fa fa-instagram" style="font-size:24px"></i></li>
+            <li><i class="fa fa-linkedin-square" style="font-size:24px"></i></li>
+            <li><i class="fa fa-twitter-square" style="font-size:24px"></i></li>
+            <li><i class="fa fa-youtube-play" style="font-size:24px"></i></li>
+          </ul>
+        </div>
+      </div>
+      <div class="ft2">
+        <div class="ft21">
+          <ul>
+            <li>Company</li>
+            <li>Jobs</li>
+            <li>Press</li>
+            <li>Investor relations</li>
+            <li>Mobile apps - searching on the go</li>
+            <li>Hotels.com for hoteliers</li>
+          </ul>
+        </div>
+        <div class="ft21">
+          <ul>
+            <li>Help</li>
+            <li>Learn how Hotels.com works</li>
+            <li>Terms and conditions</li>
+            <li>Legal information</li>
+            <li>Do Not Sell My Personal Information</li>
+            <li>Privacy notice</li>
+            <li>DSA information</li>
+            <li>Cybersecurity</li>
+            <li>Vulnerability Disclosure Programme</li>
+          </ul>
+        </div>
+        <div class="ft21">
+          <h3>Get exclusive information for your next stay</h3>
+        </div>
+      </div>
+    </div>
+  </div>
 
-</body>
 </html>
