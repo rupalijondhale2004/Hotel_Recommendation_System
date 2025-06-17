@@ -109,21 +109,25 @@
         <div class="form-group col-md-6">
           <label>City</label>
           <select name="city_id" class="form-control" onchange="fetcharea(this.value)" id="ns">
-            <option value="<%=erecord[0].city_name%>" ></option>
-            <% Citdata.forEach((item, index) => { %>
-              <option value="<%= item.city_id %>"><%= item.city_name %></option>
-            <% }); %>
-          </select>
+  
+  <% Citdata.forEach((item, index) => { %>
+    <option value="<%= item.city_id %>" <%= (item.city_name === erecord[0].city_name) ? 'selected' : '' %>>
+      <%= item.city_name %>
+    </option>
+  <% }); %>
+</select>
         </div>
 
         <div class="form-group col-md-6">
           <label>Area</label>
-          <select name="area_id" class="form-control" id="area">
-            <option value="<%=erecord[0].area_name%>"></option>
-            <% Areadata.forEach((item, index) => { %>
-              <option value="<%= item.area_id %>"><%= item.area_name %></option>
-            <% }); %>
-          </select>
+          <select name="area_id" class="form-control" id="area" required>
+
+  <% Areadata.forEach((item, index) => { %>
+    <option value="<%= item.area_id %>" <%= (item.area_id === erecord[0].area_id) ? 'selected' : '' %>>
+      <%= item.area_name %>
+    </option>
+  <% }); %>
+</select>
         </div>
 
         <div class="form-group col-md-6">
@@ -142,15 +146,16 @@
         </div>
 
         <div class="form-group col-md-6">
-          <label>Hotel Image</label>
-          <select name="pic_id" class="form-control">
-            <option value="<%=erecord[0].filename%>"></option>
-            <% Picdata.forEach((item, index) => { %>
-              <option value="<%= item.pic_id %>"><%= item.filename %></option>
-            <% }); %>
-          </select>
-        </div>
-      </div>
+            <label>Image</label>
+    <select name="pic_id" class="form-control" required>
+    <option disabled>Select Image</option>
+    <% Picdata.forEach((item, index) => { %>
+      <option value="<%= item.pic_id %>" <%= (item.pic_id === erecord[0].pic_id) ? 'selected' : '' %>>
+        <%= item.filename %>
+      </option>
+    <% }); %>
+  </select>
+</div>
 
       
       <div class="btn-row">
