@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hotel Admin Template</title>
+  <link rel="stylesheet" href="styleHotelDash.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f0f4f8;
+      color: #333;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    .container {
+      padding: 10px 16px;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      margin: 0 auto;
+    }
+
+    .search-bar {
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .search-bar input {
+      width: 100%;
+      max-width: 300px;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .navbar {
+      background: #ffffff;
+      padding: 10px 16px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      overflow-x: auto;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 600;
+      color: #FFA500;
+      flex-shrink: 0;
+    }
+
+    .nav {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      padding: 8px 16px;
+      font-size: 15px;
+      background: #e0e7ff;
+      color: #333;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      white-space: nowrap;
+      display: inline-block;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      background: #43cea2;
+      color: #fff;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 5;
+      min-width: 150px;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 8px 12px;
+      color: #333;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f2f2f2;
+    }
+
+    .iframe-wrapper {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .iframe-wrapper::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("hmbg1.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 0;
+    }
+
+    .iframe-wrapper::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: white(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+
+    .iframe-wrapper iframe {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-radius: 10px;
+      background: transparent;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      display: block;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 12px;
+      }
+
+      .logo {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .nav {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+      }
+
+      .nav-link {
+        width: 100%;
+        text-align: left;
+        padding: 10px;
+      }
+
+      .dropdown-content {
+        position: static;
+        box-shadow: none;
+        border: none;
+        background: transparent;
+      }
+
+      .dropdown-content a {
+        background: #e0e7ff;
+        border-radius: 6px;
+        margin: 4px 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 16px;
+      }
+
+      .nav-link {
+        font-size: 14px;
+        padding: 10px 12px;
+      }
+
+      .iframe-wrapper iframe {
+        height: 400px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search hotels..." />
+    </div>
+
+    <!-- Navbar with dropdowns -->
+    <nav class="navbar">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link active">Citywise</a>
+          <div class="dropdown-content">
+            <a onclick="loadPage('citywise_mumbai.html', this)">Mumbai</a>
+            <a onclick="loadPage('citywise_pune.html', this)">Pune</a>
+            <a onclick="loadPage('citywise_nashik.html', this)">Nashik</a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link">Areawise</a>
+          <div class="dropdown-content">
+            <a onclick="loadPage('area_kothrud.html', this)">Kothrud</a>
+            <a onclick="loadPage('area_bandra.html', this)">Bandra</a>
+            <a onclick="loadPage('area_sion.html', this)">Sion</a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link">Rating</a>
+          <div class="dropdown-content">
+            <a onclick="loadPage('rating_5.html', this)">5 Star</a>
+            <a onclick="loadPage('rating_4.html', this)">4 Star</a>
+            <a onclick="loadPage('rating_3.html', this)">3 Star</a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link">Type</a>
+          <div class="dropdown-content">
+            <a onclick="loadPage('type_resort.html', this)">Resort</a>
+            <a onclick="loadPage('type_business.html', this)">Business Hotel</a>
+            <a onclick="loadPage('type_boutique.html', this)">Boutique</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="iframe-wrapper">
+    <iframe id="contentFrame" src="" scrolling="yes"></iframe>
+  </div>
+
+  <script>
+    function loadPage(page, clickedLink) {
+      document.getElementById('contentFrame').src = page;
+
+      // Remove all active classes
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+      });
+
+      // Add active class to parent nav-link
+      if (clickedLink.closest('.dropdown-content')) {
+        clickedLink.closest('.nav-item').querySelector('.nav-link').classList.add('active');
+      } else {
+        clickedLink.classList.add('active');
+      }
+    }
+
+    document.getElementById("searchInput").addEventListener("input", function () {
+      const query = this.value.toLowerCase();
+      const iframe = document.getElementById("contentFrame").contentWindow;
+      if (iframe && iframe.findHotelBySearch) {
+        iframe.findHotelBySearch(query); // Optional: define function inside iframe pages
+      }
+    });
+  </script>
+</body>
+</html>
