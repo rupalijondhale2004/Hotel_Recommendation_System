@@ -193,7 +193,9 @@
             <td data-label="DELETE">
               <a href="/deleteHotelAdminById?hoteladminid=<%= item.hotel_id %>" onclick="return confirm('Are you sure you want to delete this area?');" style="color:red">Delete</a>
             </td>
-            <td data-label="UPDATE"></td>
+            <td data-label="UPDATE">
+              <a href="/updateHotel?hotelid=<%= item.hotel_id %>"  style="color:red">UPDATE</a>
+            </td>
           </tr>
         <% }); } %>
       </tbody>

@@ -13,7 +13,7 @@
     }
 
     .box {
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
       border-radius: 10px;
       width: 70%;
       margin: 50px auto;
@@ -85,24 +85,31 @@
 <body>
 
   <div class="box">
-    <h3 class="text-center mb-4 text-uppercase">Add Hotel Details</h3>
+    <h3 class="text-center mb-4 text-uppercase">Upadte Hotel Details</h3>
     
-    <form action="/savehotel" method="post">
+    <form action="/finalupdateHotel" method="post">
       <div class="form-row">
+
+	 <div class="form-group col-md-6">
+          <label>Hotel Name</label>
+          <input type="hidden" class="form-control" name="hotel_id" value="<%=erecord[0].hotel_id%>"  />
+        </div>
+
+
         <div class="form-group col-md-6">
           <label>Hotel Name</label>
-          <input type="text" class="form-control" name="hotel_name" placeholder="Enter Hotel Name" />
+          <input type="text" class="form-control" name="hotel_name" value="<%=erecord[0].hotel_name%>"  />
         </div>
 
         <div class="form-group col-md-6">
           <label>Hotel Address</label>
-          <input type="text" class="form-control" name="hotel_address" placeholder="Enter Hotel Address" />
+          <input type="text" class="form-control" name="hotel_address" value="<%=erecord[0].hotel_address%>"  />
         </div>
 
         <div class="form-group col-md-6">
           <label>City</label>
           <select name="city_id" class="form-control" onchange="fetcharea(this.value)" id="ns">
-            <option selected disabled>Select City</option>
+            <option value="<%=erecord[0].city_name%>" ></option>
             <% Citdata.forEach((item, index) => { %>
               <option value="<%= item.city_id %>"><%= item.city_name %></option>
             <% }); %>
@@ -112,7 +119,7 @@
         <div class="form-group col-md-6">
           <label>Area</label>
           <select name="area_id" class="form-control" id="area">
-            <option selected disabled>Select Area</option>
+            <option value="<%=erecord[0].area_name%>"></option>
             <% Areadata.forEach((item, index) => { %>
               <option value="<%= item.area_id %>"><%= item.area_name %></option>
             <% }); %>
@@ -121,23 +128,23 @@
 
         <div class="form-group col-md-6">
           <label>Email</label>
-          <input type="email" class="form-control" name="hotel_email" placeholder="Enter Hotel Email" />
+          <input type="email" class="form-control" name="hotel_email" value="<%=erecord[0].hotel_email%>" />
         </div>
 
         <div class="form-group col-md-6">
           <label>Contact</label>
-          <input type="text" class="form-control" name="hotel_contact" placeholder="Enter Hotel Contact" />
+          <input type="text" class="form-control" name="hotel_contact" value="<%=erecord[0].hotel_contact%>" />
         </div>
 
         <div class="form-group col-md-6">
           <label>Rating</label>
-          <input type="text" class="form-control" name="rating" placeholder="Enter Rating" />
+          <input type="text" class="form-control" name="rating" value="<%=erecord[0].rating%>" />
         </div>
 
         <div class="form-group col-md-6">
           <label>Hotel Image</label>
           <select name="pic_id" class="form-control">
-            <option selected disabled>Select Image</option>
+            <option value="<%=erecord[0].filename%>"></option>
             <% Picdata.forEach((item, index) => { %>
               <option value="<%= item.pic_id %>"><%= item.filename %></option>
             <% }); %>
@@ -145,14 +152,9 @@
         </div>
       </div>
 
-      <% if (msg) { %>
-        <div class="alert alert-dismissible fade show text-center" role="alert">
-          <strong><%= msg %></strong>
-        </div>
-      <% } %>
-
+      
       <div class="btn-row">
-        <input type="submit" class="btn btn-submit-hotel" value="Add Hotel" />
+        <input type="submit" class="btn btn-submit-hotel" value="Upadate  Hotel" />
         <a href="/" class="btn btn-submit-hotel text-center d-flex align-items-center justify-content-center">← Back</a>
       </div>
     </form>
