@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hotel Admin Template</title>
   <link rel="stylesheet" href="styleHotelDash.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="./ajax.js"></script>
   <style>
     html, body {
       margin: 0;
@@ -53,6 +54,8 @@
       width: 100%;
       box-sizing: border-box;
       overflow-x: auto;
+      position: relative;
+      z-index: 1;
     }
 
     .logo {
@@ -97,15 +100,14 @@
 
     .dropdown-content {
       display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      z-index: 5;
-      min-width: 150px;
+      position: relative;
+      z-index: 10;
+      min-width: 180px;
       background-color: white;
       border: 1px solid #ddd;
       border-radius: 6px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      padding: 10px;
     }
 
     .dropdown-content a {
@@ -120,30 +122,34 @@
       background-color: #f2f2f2;
     }
 
+    /* OUTSIDE DROPDOWN */
+    #c, #a {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+    }
+
+    #c.show, #a.show {
+      display: block;
+    }
+
+    #c select, #a select {
+      width: 200px;
+      padding: 6px 10px;
+      font-size: 14px;
+      border-radius: 5px;
+    }
+
     .iframe-wrapper {
       position: relative;
       border-radius: 10px;
       overflow: hidden;
       margin-top: 10px;
-    }
-
-    .iframe-wrapper::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: url("hmbg1.jpg");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      z-index: 0;
-    }
-
-    .iframe-wrapper::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-color: white(0, 0, 0, 0.6);
-      z-index: 1;
     }
 
     .iframe-wrapper iframe {
@@ -167,11 +173,6 @@
         padding: 12px;
       }
 
-      .logo {
-        font-size: 18px;
-        margin-bottom: 10px;
-      }
-
       .nav {
         flex-direction: column;
         width: 100%;
@@ -184,32 +185,16 @@
         padding: 10px;
       }
 
-      .dropdown-content {
+      #c, #a {
         position: static;
+        margin: 10px;
         box-shadow: none;
         border: none;
-        background: transparent;
+        padding: 0;
       }
 
-      .dropdown-content a {
-        background: #e0e7ff;
-        border-radius: 6px;
-        margin: 4px 0;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .logo {
-        font-size: 16px;
-      }
-
-      .nav-link {
-        font-size: 14px;
-        padding: 10px 12px;
-      }
-
-      .iframe-wrapper iframe {
-        height: 400px;
+      #c select, #a select {
+        width: 100%;
       }
     }
   </style>
@@ -222,27 +207,15 @@
       <input type="text" id="searchInput" placeholder="Search hotels..." />
     </div>
 
-    <!-- Navbar with dropdowns -->
+    <!-- Navbar -->
     <nav class="navbar">
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link active">Citywise</a>
-          <div class="dropdown-content">
-            <a onclick="loadPage('citywise_mumbai.html', this)">Mumbai</a>
-            <a onclick="loadPage('citywise_pune.html', this)">Pune</a>
-            <a onclick="loadPage('citywise_nashik.html', this)">Nashik</a>
-          </div>
+          <a class="nav-link active" id="city" onclick="getdata()">Citywise</a>
         </li>
-
         <li class="nav-item">
-          <a class="nav-link">Areawise</a>
-          <div class="dropdown-content">
-            <a onclick="loadPage('area_kothrud.html', this)">Kothrud</a>
-            <a onclick="loadPage('area_bandra.html', this)">Bandra</a>
-            <a onclick="loadPage('area_sion.html', this)">Sion</a>
-          </div>
+          <a class="nav-link" id="are" onclick="getarea()">Areawise</a>
         </li>
-
         <li class="nav-item">
           <a class="nav-link">Rating</a>
           <div class="dropdown-content">
@@ -251,7 +224,6 @@
             <a onclick="loadPage('rating_3.html', this)">3 Star</a>
           </div>
         </li>
-
         <li class="nav-item">
           <a class="nav-link">Type</a>
           <div class="dropdown-content">
@@ -262,22 +234,38 @@
         </li>
       </ul>
     </nav>
+
+    <!-- DROPDOWNS OUTSIDE -->
+    <div id="c">
+      <select name="city_id" class="form-control" onchange="fetcharea(this.value)" id="ns">
+        <option selected disabled>Select City</option>
+        <% Citdata.forEach((item, index) => { %>
+          <option value="<%= item.city_id %>"><%= item.city_name %></option>
+        <% }); %>
+      </select>
+    </div>
+
+    <div id="a">
+      <select name="area_id" class="form-control" id="area" required>
+        <option value="" disabled selected>Select Area</option>
+      </select>
+    </div>
   </div>
 
+  <!-- IFRAME FOR PAGE CONTENT -->
   <div class="iframe-wrapper">
     <iframe id="contentFrame" src="" scrolling="yes"></iframe>
   </div>
 
+  <!-- JS SCRIPT -->
   <script>
     function loadPage(page, clickedLink) {
       document.getElementById('contentFrame').src = page;
 
-      // Remove all active classes
       document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.remove('active');
       });
 
-      // Add active class to parent nav-link
       if (clickedLink.closest('.dropdown-content')) {
         clickedLink.closest('.nav-item').querySelector('.nav-link').classList.add('active');
       } else {
@@ -292,6 +280,27 @@
         iframe.findHotelBySearch(query); // Optional: define function inside iframe pages
       }
     });
+
+    function positionDropdown(triggerId, dropdownId) {
+      const trigger = document.getElementById(triggerId);
+      const dropdown = document.getElementById(dropdownId);
+
+      const rect = trigger.getBoundingClientRect();
+      dropdown.style.top = `${rect.bottom + window.scrollY}px`;
+      dropdown.style.left = `${rect.left + window.scrollX}px`;
+
+      dropdown.classList.toggle("show");
+    }
+
+    function getdata() {
+      document.getElementById("a").classList.remove("show");
+      positionDropdown("city", "c");
+    }
+
+    function getarea() {
+      document.getElementById("c").classList.remove("show");
+      positionDropdown("are", "a");
+    }
   </script>
 </body>
 </html>
