@@ -52,11 +52,10 @@
     }
 
     thead {
-      background: #e65c00;  /* fallback for old browsers */
-      background: -webkit-linear-gradient(to bottom, #F9D423, #e65c00);  /* Chrome 10-25, Safari 5.1-6 */
-      background: linear-gradient(to bottom, #F9D423, #e65c00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      background: #e65c00;
+      background: -webkit-linear-gradient(to bottom, #F9D423, #e65c00);
+      background: linear-gradient(to bottom, #F9D423, #e65c00);
       color: #fff;
-      color: white;
     }
 
     th, td {
@@ -131,11 +130,32 @@
         color: #4e54c8;
       }
     }
+
+    /* Pagination Styling */
+    .pagination-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .pagination li {
+      margin: 0 3px;
+    }
+
+    .pagination li a {
+      color: #4e54c8;
+      font-weight: bold;
+    }
+
+    .pagination .active a {
+      background-color: #4e54c8;
+      color: #fff;
+      border-color: #4e54c8;
+    }
   </style>
 </head>
 <body>
   <div class="form-group mt-5">
-    <h1 class="page-heading">User  List</h1>
+    <h1 class="page-heading">User List</h1>
   </div>
 
   <div class="container">
@@ -145,8 +165,8 @@
           <th>USER_ID</th>
           <th>USER_NAME</th>
           <th>USER_EMAIL</th>
-	  <th>USER_CONTACT</th>
-	  </tr>
+          <th>USER_CONTACT</th>
+        </tr>
       </thead>
       <tbody id="tblBody1">
         <% if (Userdata.length === 0) { %>
@@ -157,12 +177,56 @@
           <tr>
             <td data-label="USER_ID"><%= index + 1 %></td>
             <td data-label="USER_NAME"><%=item.username%></td>
-	    <td data-label="USER_EMAIL"><%=item.useremail%></td>
+            <td data-label="USER_EMAIL"><%=item.useremail%></td>
             <td data-label="USER_CONTACT"><%= item.contact%></td>
           </tr>
         <% }); } %>
       </tbody>
     </table>
+
+    <!-- Pagination -->
+    <div class="pagination-container">
+      <ul id="pagination" class="pagination justify-content-center"></ul>
+    </div>
   </div>
+
+  <!-- Pagination Script -->
+  <script>
+    const rowsPerPage = 5;
+    const table = document.getElementById("tblBody1");
+    const rows = table.querySelectorAll("tr");
+    const pagination = document.getElementById("pagination");
+    let currentPage = 1;
+    const totalPages = Math.ceil(rows.length / rowsPerPage);
+
+    function displayRows(page) {
+      const start = (page - 1) * rowsPerPage;
+      const end = start + rowsPerPage;
+      rows.forEach((row, index) => {
+        row.style.display = index >= start && index < end ? "" : "none";
+      });
+    }
+
+    function setupPagination() {
+      pagination.innerHTML = "";
+      for (let i = 1; i <= totalPages; i++) {
+        const li = document.createElement("li");
+        li.className = `page-item ${i === currentPage ? "active" : ""}`;
+        li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+        li.addEventListener("click", function(e) {
+          e.preventDefault();
+          currentPage = i;
+          displayRows(currentPage);
+          setupPagination();
+        });
+        pagination.appendChild(li);
+      }
+    }
+
+    if (rows.length > 0) {
+      displayRows(currentPage);
+      setupPagination();
+    }
+  </script>
 </body>
 </html>
