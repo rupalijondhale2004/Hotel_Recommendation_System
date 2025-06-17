@@ -111,9 +111,9 @@
   <div class="container">
     <% data.forEach((item, index) => { %>
       <div class="card">
-        <p class="index-badge"><%= index + 1 %></p>
+        <!-- <p class="index-badge"><%= index + 1 %></p> -->
 
-        <img src="/image/<%= item.filename %>" alt="Hotel Image"/>
+        <img src="./image/<%= item.filename %>" alt="Hotel Image"/>
 
         <div class="card-content">
           <h3><%= item.hotel_name %></h3>
