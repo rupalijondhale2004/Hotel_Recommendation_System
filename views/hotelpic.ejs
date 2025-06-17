@@ -31,10 +31,16 @@
       .alert {
         margin-bottom: 30px;
         text-align: center;
+        background: linear-gradient(to right, #185a9d, #43cea2);
+        color: white;
+        font-weight: 500;
+        border: none;
       }
 
       .btn-orange {
-        background-color: #ff8800;
+        background: #43cea2;
+        background: -webkit-linear-gradient(to right, #185a9d, #43cea2);
+        background: linear-gradient(to right, #185a9d, #43cea2);
         color: #fff;
         font-weight: 600;
         width: 150px;
@@ -45,7 +51,7 @@
       }
 
       .btn-orange:hover {
-        background-color: #e67300;
+        background-color: #185a9d;
       }
 
       .btn-row {
@@ -73,18 +79,18 @@
 
   <body>
     <div class="box">
-      <h4 class="text-center text-uppercase mb-4" style="color:#ff8800;">Upload Hotel Image</h4>
+      <h3 class="text-center text-uppercase mb-4" style="color:#185a9d;">Upload Hotel Image</h3>
 
-      <form type="submit" action="/savepic" method="post" >
+      <form type="submit" action="/savepic" method="post">
 
         <div class="form-group">
           <input type="file" class="form-control" id="name" name="filename" required />
         </div>
 
         <!-- Message Box -->
-        <div class="alert alert-warning alert-dismissible fade show" style="width:350px; margin-left:20px" role="alert">
+        <div class="alert alert-dismissible fade show" style="width:100%;" role="alert">
             <strong><%=msg%></strong>   
-          </div>
+        </div>
 
         <!-- Buttons Side-by-Side -->
         <div class="btn-row">
