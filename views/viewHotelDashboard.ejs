@@ -358,7 +358,18 @@
     </select>
   </div>
 
-  <div class="datahotel"></div>
+  <div class="datahotel">
+    <%if(filename!==0)
+    {
+        %>
+                <%-include(filename);
+        <%
+    }
+    else
+    {
+            
+    }%>
+  </div>
 </div>
 
 <div class="iframe-wrapper">
