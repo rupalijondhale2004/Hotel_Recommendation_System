@@ -340,7 +340,7 @@
   </div>
 
   <div id="c">
-    <select name="city_id" class="form-control" onchange="fetcharea(this.value)" id="ns">
+    <select name="city_id" class="form-control" onchange="fetchcity(this.value)" id="ns">
       <option selected disabled>Select City</option>
       <% Citdata.forEach((item, index) => { %>
         <option value="<%= item.city_id %>"><%= item.city_name %></option>
