@@ -115,6 +115,68 @@ exports.CityDelete=(req, res) => {
   });
 };
 
+
+exports.AmenitiesDash=(req,res)=>{
+
+	res.render("amenitiesDashboard.ejs");
+
+};
+exports.Amenitiespage=(req,res)=>{
+
+	res.render("amenities.ejs",{msg:""});
+
+};
+exports.Saveamenities=(req,res)=>
+{
+ let {amenity_name}=req.body;
+
+
+db.query("insert into amenities  values('0',?)", [amenity_name],(err,result)=>
+{
+	if(err){
+		res.render("amenities.ejs",{msg:"Some Problem Occured while Adding course"});
+	}else{
+		res.render("amenities.ejs",{msg:"Amenities added successfully"});
+	}
+});
+
+};
+
+exports.ViewAmenitiespage=(req, res) => {
+	db.query("select * from amenities",(err,result)=>
+{
+	if(err)
+	{
+		res.render("viewAmenities.ejs");
+
+	}
+	else
+	{
+		res.render("viewAmenities.ejs",{Amenitiesdata:result});
+
+	}
+});
+}
+ 
+exports.AmenitiesDelete=(req, res) => {
+  let  amenity_id  = parseInt(req.query.amenityid.trim());
+  db.query("delete from amenities where  amenity_id =?", [ amenity_id ], (err, result) => {
+
+	if(err)
+	{
+		console.log(err)
+	}
+});
+  db.query("select * from amenities", (err, result) => {
+    if (err) {
+      console.log("Some Problem Occured " + err);
+    } else {
+      res.render("viewAmenities.ejs", { Amenitiesdata: result });
+    }
+  });
+};
+
+
 exports.AreaDash=(req,res)=>{
 
 
@@ -320,10 +382,14 @@ exports.Hotelpage=(req,res)=>{
 exports.SaveHotel=(req,res)=>
 {
  let {hotel_name,hotel_address,city_id,area_id,hotel_email, hotel_contact,rating,pic_id}=req.body;
-
+console.log(req.body);
 console.log(pic_id+ "  pic id is ")
 db.query("insert into hotelmaster  values('0',?,?,?,?,?,?,?,?)", [hotel_name,hotel_address,city_id,area_id,hotel_email, hotel_contact,rating,pic_id],(err,result)=>
 {
+	if(err)
+	{
+		console.log(err);
+	}
 	db.query("SELECT * FROM citymaster",(err,citresult)=>{
 
 	db.query("SELECT * FROM areamaster",(err,arearesult)=>{
@@ -381,6 +447,64 @@ exports.HotelAdminDelete=(req, res) => {
   });
 };
 
+exports.HotelUpadate = (req, res) => {
+
+let hotelid = parseInt(req.query.hotelid.trim());
+console.log(hotelid);
+        let temp;
+
+  const query = `
+    SELECT 
+      h.hotel_id,
+      p.filename,
+      h.hotel_name,
+      h.hotel_address,
+      c.city_name,
+      a.area_name,
+      h.hotel_email,
+      h.hotel_contact,
+      h.rating
+    FROM 
+      hotelmaster h
+    LEFT JOIN 
+      hotelpicjoin p ON h.pic_id = p.pic_id
+    JOIN 
+      citymaster c ON h.city_id = c.city_id
+    JOIN 
+      areamaster a ON h.area_id = a.area_id
+    where h.hotel_id=?
+  `;
+
+  db.query(query,[hotelid],(err, result) => {
+    if (err) {
+      console.log("err "+err);
+          } else {
+
+		// temp=result;
+		 console.log(result);
+
+      db.query("SELECT * FROM citymaster",(err,citresult)=>{
+
+	db.query("SELECT * FROM areamaster",(err,arearesult)=>{
+
+	db.query("SELECT * FROM hotelpicjoin",(err,picresult)=>{
+     res.render("updateHotelById.ejs",{erecord: result,Citdata:citresult,Areadata:arearesult,Picdata:picresult});
+})
+})
+})
+    }
+  });
+};
+
+exports.FinlHotelUpadate = (req, res) => {
+	let {hotel_id,hotel_name,hotel_address,city_id,area_id,hotel_email, hotel_contact,rating,pic_id}=req.body;
+
+	db.query("update hotelmaster set hotel_name=?,hotel_address=?,city_id=?, area_id=?,hotel_email=?,hotel_contact=?, rating=?,pic_id=? where hotel_id=?",[hotel_name,hotel_address,city_id,area_id,hotel_email, hotel_contact,rating,pic_id,hotel_id],(err,result)=>{});
+      res.redirect("/viewhotelAdmin");
+
+
+};
+
 
 exports.HotelView = (req, res) => {
   const query = `
@@ -418,7 +542,7 @@ exports.getareadata=(req,res)=>
 {
 	let city_id=req.query.city_id;
 	console.log(city_id);
-	db.query("select a.area_name from citymaster c inner join cityareajoin cj on c.city_id=cj.city_id inner join areamaster a on a.area_id=cj.area_id where cj.city_id=?",[city_id],(err,result)=>
+	db.query("select a.area_name,a.area_id from citymaster c inner join cityareajoin cj on c.city_id=cj.city_id inner join areamaster a on a.area_id=cj.area_id where cj.city_id=?",[city_id],(err,result)=>
 	{
 		console.log(result);
 		res.json(result);

@@ -1,37 +1,33 @@
-
 function fetcharea(str) {
-  // Create a new XMLHttpRequest object
-  let val=document.getElementById("ns").value;
-  
-  // alert(val);
-  var xhr = new XMLHttpRequest();
+  let val = document.getElementById("ns").value;
 
-  // Set up the request
- xhr.open("GET", "/getareadata?city_id="+val, true);
-  // Define what happens when response is received
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "/getareadata?city_id=" + val, true);
+
   xhr.onload = function() {
     if (xhr.status == 200) {
-    //   document.getElementById("result").innerHTML = xhr.responseText;
+      let areaSelect = document.getElementById("area");
+      areaSelect.innerHTML = '<option selected disabled>Select Area</option>';  // Reset + default
 
-      document.getElementById("area").innerHTML="";
-         let data = JSON.parse(xhr.responseText);
-          console.log(data);
+      let data = JSON.parse(xhr.responseText);
+      console.log(data);
 
-            data.forEach((ele) => {
-  let tag = document.createElement("option");
-  tag.value = ele.area_id;          // set option value
-  tag.innerHTML = ele.area_name;    // set option text
-  document.getElementById("area").appendChild(tag);
-});
-
-
-
+      data.forEach((ele) => {
+        let tag = document.createElement("option");
+        tag.value = ele.area_id;
+        tag.innerHTML = ele.area_name;
+        areaSelect.appendChild(tag);
+      });
     } else {
-    //   document.getElementById("result").innerHTML = "Error: " + xhr.status;
-        alert(xhr.status);
+      alert("Error loading areas: " + xhr.status);
     }
   };
 
-  // Send the request // true = asynchronous
   xhr.send();
-}
+}document.getElementById("area").innerHTML = '<option value="" disabled selected>Select Area</option>';
+data.forEach((ele) => {
+  let tag = document.createElement("option");
+  tag.value = ele.area_id;
+  tag.innerHTML = ele.area_name;
+  document.getElementById("area").appendChild(tag);
+});
