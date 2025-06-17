@@ -155,7 +155,7 @@
 </head>
 <body>
   <div class="form-group mt-5">
-    <h1 class="page-heading">USER LIST</h1>
+    <h1 class="page-heading">CUSTOMER LIST</h1>
   </div>
 
   <div class="container">
@@ -169,19 +169,19 @@
         </tr>
       </thead>
       <tbody id="tblBody1">
-        <% if (Userdata.length === 0) { %>
-          <tr>
-            <td colspan="4">There is no data present in table.</td>
-          </tr>
-        <% } else {Userdata.forEach((item, index) => { %>
+          <% if (Userdata.length === 0) { %>
+          <tr><td colspan="4">There is no data present in table.</td></tr>
+          <% } else { %>
+          <% Userdata.forEach((item, index) => { %>
           <tr>
             <td data-label="USER_ID"><%= index + 1 %></td>
-            <td data-label="USER_NAME"><%=item.username%></td>
-            <td data-label="USER_EMAIL"><%=item.useremail%></td>
-            <td data-label="USER_CONTACT"><%= item.contact%></td>
+            <td data-label="USER_NAME"><%= item.username %></td>
+            <td data-label="USER_EMAIL"><%= item.useremail %></td>
+            <td data-label="USER_CONTACT"><%= item.contact %></td>
           </tr>
-        <% }); } %>
-      </tbody>
+    <% }); %>
+  <% } %>
+</tbody>
     </table>
 
     <!-- Pagination -->
