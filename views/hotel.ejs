@@ -54,6 +54,7 @@
       color: white;
       font-weight: 500;
       border: none;
+      text-align: center;
     }
 
     .btn-row {
@@ -64,10 +65,9 @@
     }
 
     h3 {
-      color: white;
+      color: #185a9d;
       padding: 15px;
       border-radius: 6px;
-      color: #185a9d;
     }
 
     @media (max-width: 768px) {
@@ -87,7 +87,7 @@
   <div class="box">
     <h3 class="text-center mb-4 text-uppercase">Add Hotel Details</h3>
     
-    <form action="/savehotel" method="post">
+    <form action="/savehotel" method="post" id="hotelForm">
       <div class="form-row">
         <div class="form-group col-md-6">
           <label>Hotel Name</label>
@@ -110,21 +110,11 @@
         </div>
 
         <div class="form-group col-md-6">
-          <label>City</label>
-            <select name="area_id" class="form-control" id="area" required>
-              <option value="" disabled selected>Select Area</option>
-</select>
-</div>
-
-        <!-- <div class="form-group col-md-6">
           <label>Area</label>
-          <select name="area_id" class="form-control" id="area">
-            <option selected disabled>Select Area</option>
-            <% Areadata.forEach((item, index) => { %>
-              <option value="<%= item.area_id %>"><%= item.area_name %></option>
-            <% }); %>
+          <select name="area_id" class="form-control" id="area" required>
+            <option value="" disabled selected>Select Area</option>
           </select>
-        </div> -->
+        </div>
 
         <div class="form-group col-md-6">
           <label>Email</label>
@@ -153,7 +143,7 @@
       </div>
 
       <% if (msg) { %>
-        <div class="alert alert-dismissible fade show text-center" role="alert">
+        <div id="msgBox" class="alert alert-dismissible fade show" role="alert" style="display: none;">
           <strong><%= msg %></strong>
         </div>
       <% } %>
@@ -165,7 +155,15 @@
     </form>
   </div>
 
-  
+  <!-- Show message box after form submit -->
+  <script>
+    document.getElementById("hotelForm").addEventListener("submit", function () {
+      const msgBox = document.getElementById("msgBox");
+      if (msgBox) {
+        msgBox.style.display = "block";
+      }
+    });
+  </script>
 
 </body>
 </html>
