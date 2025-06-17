@@ -141,6 +141,93 @@
       color: #fff;
       border-color: #4e54c8;
     }
+
+    /* Modal Styling */
+    .modal-content {
+      border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+      border: none;
+      overflow: hidden;
+      background: #ffffff;
+      animation: slideDown 0.4s ease;
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .modal-header {
+      background: linear-gradient(to right, #185a9d, #43cea2);
+      color: #fff;
+      padding: 15px 20px;
+      border-bottom: none;
+    }
+
+    .modal-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
+
+    .modal-body {
+      padding: 25px;
+      color: #333;
+      font-size: 1rem;
+      line-height: 1.6;
+      background: #f9fbfd;
+    }
+
+    .modal-body p {
+      margin-bottom: 15px;
+    }
+
+    .modal-body strong {
+      color: #185a9d;
+    }
+
+    .modal-footer {
+      background-color: #f1f1f1;
+      padding: 12px 20px;
+      border-top: none;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .modal-footer .btn-secondary {
+      background-color: #185a9d;
+      color: white;
+      border: none;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+    }
+
+    .modal-footer .btn-secondary:hover {
+      background-color: #1283c9;
+    }
+
+    .modal-header .close {
+      color: #fff;
+      font-size: 1.4rem;
+      opacity: 0.8;
+    }
+
+    .modal-header .close:hover {
+      opacity: 1;
+    }
+
+    #viewImage {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-top: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
   </style>
 </head>
 <body>
@@ -217,9 +304,9 @@
   <div class="modal fade" id="hotelViewModal" tabindex="-1" role="dialog" aria-labelledby="hotelViewModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
       <div class="modal-content">
-        <div class="modal-header bg-primary text-white">
+        <div class="modal-header">
           <h5 class="modal-title" id="hotelViewModalLabel">Hotel Details</h5>
-          <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -232,7 +319,7 @@
           <p><strong>Contact:</strong> <span id="viewContact"></span></p>
           <p><strong>Rating:</strong> <span id="viewRating"></span></p>
           <p><strong>Image:</strong><br>
-            <img id="viewImage" src="" alt="Hotel Image" style="max-width: 100%; border-radius: 8px; display: none;" />
+            <img id="viewImage" src="" alt="Hotel Image" />
           </p>
         </div>
         <div class="modal-footer">
