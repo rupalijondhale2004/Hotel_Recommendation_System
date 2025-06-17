@@ -38,7 +38,7 @@
       display: none; /* Hidden by default */
     }
 
-    .btn-orange {
+    .btn-submit-amenities {
       background: #43cea2;
       background: -webkit-linear-gradient(to right, #185a9d, #43cea2);
       background: linear-gradient(to right, #185a9d, #43cea2);
@@ -51,7 +51,7 @@
       transition: 0.3s;
     }
 
-    .btn-orange:hover {
+    .btn-submit-amenities:hover {
       background-color: #185a9d;
     }
 
@@ -84,7 +84,7 @@
 
     <form id="uploadForm" action="/saveamenities" method="post" enctype="multipart/form-data">
       <div class="form-group">
-        <input type="text" class="form-control" id="name" name="amenity_name" required />
+        <input type="text" class="form-control" id="name" name="amenity_name" placeholder="Enter Amenities" required />
       </div>
 
       <!-- Message Box -->
@@ -94,8 +94,8 @@
 
       <!-- Buttons Side-by-Side -->
       <div class="btn-row">
-        <input type="submit" class="btn btn-orange" id="ns" value="Add Amenities" />
-        <a href="/" class="btn btn-orange d-flex align-items-center justify-content-center">← Back</a>
+        <input type="submit" class="btn btn-submit-amenities" id="ns" value="Add Amenities" />
+        <a href="/" class="btn btn-submit-amenities d-flex align-items-center justify-content-center">← Back</a>
       </div>
     </form>
   </div>
