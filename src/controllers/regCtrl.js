@@ -100,6 +100,11 @@ exports.ViewCitypage=(req, res) => {
 exports.CityDelete=(req, res) => {
   let city_id = parseInt(req.query.cityid.trim());
   db.query("delete from citymaster where city_id=?", [city_id], (err, result) => {
+
+	if(err)
+	{
+		console.log(err)
+	}
 });
   db.query("select * from citymaster", (err, result) => {
     if (err) {
@@ -111,6 +116,7 @@ exports.CityDelete=(req, res) => {
 };
 
 exports.AreaDash=(req,res)=>{
+
 
 	res.render("areaDashboard.ejs");
 
@@ -186,7 +192,7 @@ catch(err)
 }
 };
 exports.ViewAreapage=(req, res) => {
-	db.query("select * from areamaster",(err,result)=>
+	db.query("select a.area_name,c.city_name,a.area_id from areamaster a inner join cityareajoin cj on a.area_id=cj.area_id inner join citymaster c on cj.city_id=c.city_id ",(err,result)=>
 {
 	if(err)
 	{
@@ -200,18 +206,26 @@ exports.ViewAreapage=(req, res) => {
 	}
 });
 }
+
+
 exports.AreaDelete=(req, res) => {
-  let  area_id = parseInt(req.query.areaid.trim());
-  db.query("delete from areamaster where area_id=?", [ area_id], (err, result) => {
-});
-  db.query("select * from areamaster", (err, result) => {
+  let  area_id = req.query.areaid;
+  console.log(area_id);
+  db.query("delete from areamaster where area_id=?", [area_id], (err, result) => {
+	if(err)
+	{
+		console.log(err);
+	}
+	db.query("select a.area_name,c.city_name,a.area_id from areamaster a inner join cityareajoin cj on a.area_id=cj.area_id inner join citymaster c on cj.city_id=c.city_id", (err, result) => {
     if (err) {
       console.log("Some Problem Occured " + err);
     } else {
       res.render("viewArea.ejs", { Areadata: result });
     }
   });
+   });
 };
+
 exports.ReviewDash=(req,res)=>{
 
 	res.render("reviewDashboard.ejs");
@@ -402,6 +416,36 @@ exports.HotelView = (req, res) => {
 
 exports.getareadata=(req,res)=>
 {
-	res.send("hello");
+	let city_id=req.query.city_id;
+	console.log(city_id);
+	db.query("select a.area_name from citymaster c inner join cityareajoin cj on c.city_id=cj.city_id inner join areamaster a on a.area_id=cj.area_id where cj.city_id=?",[city_id],(err,result)=>
+	{
+		console.log(result);
+		res.json(result);
+	});
 }
 
+exports.CustomerView=(req, res) => {
+	db.query("select * from usermaster where type='User'",(err,result)=>
+{
+	if(err)
+	{
+		res.render("viewCustomer.ejs");
+
+	}
+	else
+	{
+		res.render("viewCustomer.ejs",{UserData:result});
+
+	}
+});
+}
+
+
+
+exports.ViewHotelDash=(req,res)=>{
+
+
+	res.render("viewHotelDashboard.ejs");
+
+};
