@@ -37,6 +37,14 @@
     .alert {
       margin-bottom: 25px;
       text-align: center;
+      color: white;
+      background: #43cea2;
+      background: -webkit-linear-gradient(to right, #185a9d, #43cea2);
+      background: linear-gradient(to right, #185a9d, #43cea2);
+      border: none;
+      border-radius: 6px;
+      font-weight: 500;
+      padding: 12px;
     }
 
     .btn-row {
@@ -45,8 +53,10 @@
       gap: 15px; /* Space between buttons */
     }
 
-    .btn-orange {
-      background-color: #ff8800;
+    .btn-submit-city {
+      background: #43cea2;
+      background: -webkit-linear-gradient(to right, #185a9d, #43cea2);
+      background: linear-gradient(to right, #185a9d, #43cea2);
       color: #fff;
       font-weight: 600;
       width: 150px;
@@ -59,8 +69,8 @@
       text-decoration: none;
     }
 
-    .btn-orange:hover {
-      background-color: #e67300;
+    .btn-submit-city:hover {
+      background-color: #185a9d;
       color: #fff;
     }
 
@@ -75,7 +85,7 @@
         gap: 10px;
       }
 
-      .btn-orange {
+      .btn-submit-city {
         width: 100%;
       }
     }
@@ -84,7 +94,7 @@
 <body>
 
   <div class="box">
-    <h4 class="text-center text-uppercase mb-4" style="color:#ff8800;">Add New City</h4>
+    <h4 class="text-center text-uppercase mb-4" style="color:#185a9d;">Add New City</h4>
 
     <form action="/save" method="post">
 
@@ -98,15 +108,15 @@
 
       <!-- Message Box -->
       <% if (msg) { %>
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <div class="alert" role="alert">
           <strong><%= msg %></strong>
         </div>
       <% } %>
 
       <!-- Buttons -->
       <div class="btn-row">
-        <input type="submit" class="btn-orange" value="Add City"/>
-        <a href="/" class="btn-orange"><i class="fas fa-arrow-left mr-1"></i>Back</a>
+        <input type="submit" class="btn-submit-city" value="Add City"/>
+        <a href="/" class="btn-submit-city"><i class="fas fa-arrow-left mr-1"></i>Back</a>
       </div>
 
     </form>
