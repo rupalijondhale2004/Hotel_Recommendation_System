@@ -98,6 +98,24 @@
       color: #fff;
     }
 
+    .price-btn {
+      padding: 8px 16px;
+      background-color: #e0e7ff;
+      color: #333;
+      font-weight: 500;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .price-btn:hover {
+      background-color: #43cea2;
+      color: white;
+    }
+
     .dropdown-content {
       display: none;
       position: relative;
@@ -122,7 +140,6 @@
       background-color: #f2f2f2;
     }
 
-    /* OUTSIDE DROPDOWN */
     #c, #a {
       display: none;
       position: fixed;
@@ -166,6 +183,69 @@
       overflow: hidden;
     }
 
+    .hidediv {
+      display: none;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: 30px auto;
+      background-color: white;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .price-heading {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    .price-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .price-tag {
+      padding: 10px 18px;
+      border: 1px solid #ccc;
+      border-radius: 999px;
+      font-size: 14px;
+      color: #333;
+      background-color: #fff;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .price-tag:hover {
+      border-color: #4e54c8;
+      color: #4e54c8;
+    }
+
+    .done-btn {
+      padding: 10px 28px;
+      background-color: #aa00aa;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto 10px;
+    }
+
+    .product-count {
+      text-align: center;
+      margin-top: 10px;
+      color: #555;
+      font-size: 14px;
+    }
+
     @media (max-width: 768px) {
       .navbar {
         flex-direction: column;
@@ -201,119 +281,132 @@
 </head>
 <body>
 
-  <div class="container">
-    <!-- Search Bar -->
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Search hotels..." onkeyup="searchHotel(this.value)" />
-    </div>
-
-    <!-- Navbar -->
-    <nav class="navbar">
-      <ul class="nav">
-        <li class="nav-item">
-          <a class="nav-link active" id="city" onclick="getdata()">Citywise</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="are" onclick="getarea()">Areawise</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">Rating</a>
-          <div class="dropdown-content">
-            <a onclick="loadPage('rating_5.html', this)">6 Star</a>
-            <a onclick="loadPage('rating_4.html', this)">4 Star</a>
-            <a onclick="loadPage('rating_3.html', this)">3 Star</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">Type</a>
-          <div class="dropdown-content">
-            <a onclick="loadPage('type_resort.html', this)">Resort</a>
-            <a onclick="loadPage('type_business.html', this)">Business Hotel</a>
-            <a onclick="loadPage('type_boutique.html', this)">Boutique</a>
-          </div>
-        </li>
-      </ul>
-    </nav>
-
-    <!-- DROPDOWNS OUTSIDE -->
-    <div id="c">
-      <select name="city_id" class="form-control" onchange="fetcharea(this.value)" id="ns">
-        <option selected disabled>Select City</option>
-        <% Citdata.forEach((item, index) => { %>
-          <option value="<%= item.city_id %>"><%= item.city_name %></option>
-        <% }); %>
-      </select>
-    </div>
-
-    <div id="a">
-      <select name="area_id" class="form-control" id="area" required>
-        <option value="" disabled selected>Select Area</option>
-      </select>
-    </div>
-
-      <label for="volume">Volume:</label>
-<input type="range" id="volume" name="volume" min="0" max="100" value="50">
-<span id="output">50</span>
+<div class="container">
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search hotels..." onkeyup="searchHotel(this.value)" />
   </div>
 
-  <!-- IFRAME FOR PAGE CONTENT -->
-  <div class="iframe-wrapper">
-    <iframe id="contentFrame" src="" scrolling="yes"></iframe>
+  <nav class="navbar">
+    <ul class="nav">
+      <li class="nav-item"><a class="nav-link active" id="city" onclick="getdata()">Citywise</a></li>
+      <li class="nav-item"><a class="nav-link" id="are" onclick="getarea()">Areawise</a></li>
+      <li class="nav-item">
+        <a class="nav-link">Rating</a>
+        <div class="dropdown-content">
+          <a onclick="loadPage('rating_5.html', this)">6 Star</a>
+          <a onclick="loadPage('rating_4.html', this)">4 Star</a>
+          <a onclick="loadPage('rating_3.html', this)">3 Star</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">Type</a>
+        <div class="dropdown-content">
+          <a onclick="loadPage('type_resort.html', this)">Resort</a>
+          <a onclick="loadPage('type_business.html', this)">Business Hotel</a>
+          <a onclick="loadPage('type_boutique.html', this)">Boutique</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <button onclick="toggleDiv()" class="price-btn">Price</button>
+      </li>
+    </ul>
+  </nav>
+
+  <div id="hidediv" class="hidediv">
+    <div class="price-heading">PRICE</div>
+    <div class="price-options">
+      <div class="price-tag">₹ 0 - ₹ 99</div>
+      <div class="price-tag">₹ 100 - ₹ 149</div>
+      <div class="price-tag">₹ 150 - ₹ 199</div>
+      <div class="price-tag">₹ 200 - ₹ 249</div>
+      <div class="price-tag">₹ 250 - ₹ 299</div>
+      <div class="price-tag">₹ 300 - ₹ 399</div>
+      <div class="price-tag">₹ 400 - ₹ 499</div>
+      <div class="price-tag">₹ 500 - ₹ 599</div>
+      <div class="price-tag">Under ₹ 449</div>
+      <div class="price-tag">₹ 600 - ₹ 699</div>
+      <div class="price-tag">₹ 700 - ₹ 799</div>
+      <div class="price-tag">₹ 800 & Above</div>
+      <div class="price-tag">Under ₹ 99</div>
+      <div class="price-tag">Under ₹ 149</div>
+      <div class="price-tag">Under ₹ 199</div>
+      <div class="price-tag">Under ₹ 249</div>
+      <div class="price-tag">Under ₹ 299</div>
+      <div class="price-tag">Under ₹ 399</div>
+      <div class="price-tag">Under ₹ 499</div>
+    </div>
+    <button onclick="toggleDiv()" class="done-btn">Done</button>
+    <div class="product-count">1000+ Products</div>
   </div>
 
+  <div id="c">
+    <select name="city_id" class="form-control" onchange="fetcharea(this.value)" id="ns">
+      <option selected disabled>Select City</option>
+      <% Citdata.forEach((item, index) => { %>
+        <option value="<%= item.city_id %>"><%= item.city_name %></option>
+      <% }); %>
+    </select>
+  </div>
 
-  <!-- JS SCRIPT -->
-  <script>
-    function loadPage(page, clickedLink) {
-      document.getElementById('contentFrame').src = page;
+  <div id="a">
+    <select name="area_id" class="form-control" id="area" required>
+      <option value="" disabled selected>Select Area</option>
+    </select>
+  </div>
 
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
-      });
+  <div class="datahotel"></div>
+</div>
 
-      if (clickedLink.closest('.dropdown-content')) {
-        clickedLink.closest('.nav-item').querySelector('.nav-link').classList.add('active');
-      } else {
-        clickedLink.classList.add('active');
-      }
-    }
+<div class="iframe-wrapper">
+  <iframe id="contentFrame" src="" scrolling="yes"></iframe>
+</div>
 
-    document.getElementById("searchInput").addEventListener("input", function () {
-      const query = this.value.toLowerCase();
-      const iframe = document.getElementById("contentFrame").contentWindow;
-      if (iframe && iframe.findHotelBySearch) {
-        iframe.findHotelBySearch(query); // Optional: define function inside iframe pages
-      }
+<script>
+  function loadPage(page, clickedLink) {
+    document.getElementById('contentFrame').src = page;
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.classList.remove('active');
     });
 
-    function positionDropdown(triggerId, dropdownId) {
-      const trigger = document.getElementById(triggerId);
-      const dropdown = document.getElementById(dropdownId);
-
-      const rect = trigger.getBoundingClientRect();
-      dropdown.style.top = `${rect.bottom + window.scrollY}px`;
-      dropdown.style.left = `${rect.left + window.scrollX}px`;
-
-      dropdown.classList.toggle("show");
+    if (clickedLink.closest('.dropdown-content')) {
+      clickedLink.closest('.nav-item').querySelector('.nav-link').classList.add('active');
+    } else {
+      clickedLink.classList.add('active');
     }
+  }
 
-    function getdata() {
-      document.getElementById("a").classList.remove("show");
-      positionDropdown("city", "c");
+  document.getElementById("searchInput").addEventListener("input", function () {
+    const query = this.value.toLowerCase();
+    const iframe = document.getElementById("contentFrame").contentWindow;
+    if (iframe && iframe.findHotelBySearch) {
+      iframe.findHotelBySearch(query);
     }
+  });
 
-    function getarea() {
-      document.getElementById("c").classList.remove("show");
-      positionDropdown("are", "a");
-    }
+  function positionDropdown(triggerId, dropdownId) {
+    const trigger = document.getElementById(triggerId);
+    const dropdown = document.getElementById(dropdownId);
+    const rect = trigger.getBoundingClientRect();
+    dropdown.style.top = `${rect.bottom + window.scrollY}px`;
+    dropdown.style.left = `${rect.left + window.scrollX}px`;
+    dropdown.classList.toggle("show");
+  }
 
-    const slider = document.getElementById("volume");
-  const output = document.getElementById("output");
-  slider.oninput = function() {
-    output.textContent = this.value;
-    alert(output.textContent);
-  }
+  function getdata() {
+    document.getElementById("a").classList.remove("show");
+    positionDropdown("city", "c");
+  }
 
-  </script>
+  function getarea() {
+    document.getElementById("c").classList.remove("show");
+    positionDropdown("are", "a");
+  }
+
+  function toggleDiv() {
+    const div = document.getElementById('hidediv');
+    div.style.display = (div.style.display === 'none' || div.style.display === '') ? 'block' : 'none';
+  }
+</script>
+
 </body>
 </html>
