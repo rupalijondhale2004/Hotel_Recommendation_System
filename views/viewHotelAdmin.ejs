@@ -63,13 +63,6 @@
       border-bottom: 1px solid #e0e0e0;
     }
 
-    th:nth-child(1), td:nth-child(1) {
-      width: 100px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
     tbody tr {
       background-color: #f9f9f9;
       transition: background-color 0.2s;
@@ -239,7 +232,7 @@
           <p><strong>Contact:</strong> <span id="viewContact"></span></p>
           <p><strong>Rating:</strong> <span id="viewRating"></span></p>
           <p><strong>Image:</strong><br>
-            <img id="viewImage" src="" alt="Hotel Image" style="max-width: 100%; border-radius: 8px;" />
+            <img id="viewImage" src="" alt="Hotel Image" style="max-width: 100%; border-radius: 8px; display: none;" />
           </p>
         </div>
         <div class="modal-footer">
@@ -289,7 +282,6 @@
       setupPagination();
     }
 
-    // View button logic
     document.querySelectorAll(".view-btn").forEach(btn => {
       btn.addEventListener("click", function () {
         document.getElementById("viewHotelName").textContent = this.dataset.name;
@@ -299,7 +291,17 @@
         document.getElementById("viewEmail").textContent = this.dataset.email;
         document.getElementById("viewContact").textContent = this.dataset.contact;
         document.getElementById("viewRating").textContent = this.dataset.rating;
-        document.getElementById("viewImage").src = "/uploads/" + this.dataset.image; // Adjust path if needed
+
+        const imgElement = document.getElementById("viewImage");
+        const filename = this.dataset.image;
+
+        if (filename && filename.trim() !== "") {
+          imgElement.src = "/uploads/" + filename;
+          imgElement.style.display = "block";
+        } else {
+          imgElement.src = "";
+          imgElement.style.display = "none";
+        }
       });
     });
   </script>
