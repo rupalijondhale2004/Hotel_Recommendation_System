@@ -250,12 +250,17 @@
         <option value="" disabled selected>Select Area</option>
       </select>
     </div>
+
+      <label for="volume">Volume:</label>
+<input type="range" id="volume" name="volume" min="0" max="100" value="50">
+<span id="output">50</span>
   </div>
 
   <!-- IFRAME FOR PAGE CONTENT -->
   <div class="iframe-wrapper">
     <iframe id="contentFrame" src="" scrolling="yes"></iframe>
   </div>
+
 
   <!-- JS SCRIPT -->
   <script>
@@ -301,6 +306,14 @@
       document.getElementById("c").classList.remove("show");
       positionDropdown("are", "a");
     }
+
+    const slider = document.getElementById("volume");
+  const output = document.getElementById("output");
+  slider.oninput = function() {
+    output.textContent = this.value;
+    alert(output.textContent);
+  }
+
   </script>
 </body>
 </html>
