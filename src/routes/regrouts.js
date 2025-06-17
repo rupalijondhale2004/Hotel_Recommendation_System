@@ -34,6 +34,8 @@ router.get("/deleteHotelPicById",controller.HotelPicDelete);
 router.post("/savepic",controller.SavePic)
 router.get("/viewhotel",controller.HotelView);
 router.get("/getareadata",controller.getareadata);
+router.get("/viewcustomer",controller.CustomerView);
+router.get("/viewhotelDash",controller.ViewHotelDash);
 module.exports=router;
 
 
