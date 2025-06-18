@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Surya Hotel</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f9f9f9;
+    }
+
+    /* ✅ NAVBAR */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background-color: #ffffff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      flex-wrap: wrap;
+    }
+
+    .navbar h1 {
+      font-size: 28px;
+      color: #333;
+      margin: 0;
+    }
+
+    .navbar .nav-contact {
+      display: flex;
+      gap: 30px;
+      font-size: 16px;
+      color: #444;
+    }
+
+    .navbar .nav-contact p {
+      margin: 0;
+    }
+
+    /* ✅ HEADER IMAGE */
+    .main {
+      width: 90%;
+      height: 80vh;
+      background-image: url("hotel.jpeg"); /* Replace with actual image */
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      margin: 40px auto;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+    }
+
+    .wrapper {
+      width: 90%;
+      margin: 40px auto;
+    }
+
+    .main-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .left-content {
+      flex: 1 1 55%;
+    }
+
+    .left-content p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .right-booking-card {
+      flex: 1 1 30%;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      height: fit-content;
+    }
+
+    .price {
+      font-size: 32px;
+      font-weight: bold;
+      color: #000;
+    }
+
+    .per-night {
+      font-size: 16px;
+      color: #666;
+      margin-left: 5px;
+    }
+
+    hr {
+      margin: 20px 0;
+      border: none;
+      border-top: 1px solid #eee;
+    }
+
+    label {
+      font-size: 14px;
+      color: #333;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    input[type="date"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      width: 100%;
+      background: #c7b386;
+      color: white;
+      font-weight: bold;
+      padding: 14px;
+      font-size: 14px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #b39c6e;
+    }
+
+    .images-and-card-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .images {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      flex: 1 1 60%;
+    }
+
+    .images img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      object-fit: cover;
+    }
+
+    .images img:nth-child(1) { height: 240px; }
+    .images img:nth-child(2) { height: 200px; }
+    .images img:nth-child(3) { height: 180px; }
+    .images img:nth-child(4) { height: 210px; }
+
+    .right-side-column {
+      flex: 1 1 35%;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .amenities-card {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .amenities-card h2 {
+      margin-top: 0;
+    }
+
+    .amenities-card ul {
+      list-style: disc;
+      padding-left: 20px;
+    }
+
+    .amenities-card li {
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 900px) {
+      .main-container,
+      .images-and-card-container,
+      .right-side-column,
+      .navbar {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .navbar {
+        gap: 15px;
+        padding: 20px;
+      }
+
+      .left-content,
+      .right-booking-card,
+      .images,
+      .amenities-card {
+        max-width: 100%;
+      }
+
+      .images {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ NAVBAR -->
+  <div class="navbar">
+    <h1>Surya Hotel</h1>
+    <div class="nav-contact">
+      <p>Email: info@suryahotel.com</p>
+      <p>Contact: +91 98765 43210</p>
+    </div>
+  </div>
+
+  <!-- ✅ HEADER IMAGE -->
+  <div class="main"></div>
+
+  <div class="wrapper">
+    <!-- ✅ Description + Booking -->
+    <div class="main-container">
+      <div class="left-content">
+        <p>Classic Double Rooms come with either double or single beds. Designed in open-concept living area, they have lots of in-room facilities.</p>
+        <p>The room sizes vary from 20 to 25 sqm. They are also equipped with a fully-stocked minibar and snacks, air-conditioning unit, two comfortable chairs, makeup mirror, huge wardrobe, a soft hand-made carpet and ensuite bathroom.</p>
+        <p>Perfect choice for honeymooners and couples.</p>
+        <p>Moreover, you may also order any type of meal any time as we work around-the-clock.</p>
+      </div>
+
+      <div class="right-booking-card">
+        <div class="price-section">
+          <span class="price">$159</span><span class="per-night">/ per night</span>
+        </div>
+        <hr />
+        <label for="checkin">Check-in Date *</label>
+        <input type="date" id="checkin" name="checkin" />
+        <label for="checkout">Check-out Date *</label>
+        <input type="date" id="checkout" name="checkout" />
+        <button class="btn">CHECK AVAILABILITY</button>
+      </div>
+    </div>
+
+    <!-- ✅ Images + Amenities -->
+    <div class="images-and-card-container">
+      <div class="images">
+        <img src="image1.jpg" alt="Room 1" />
+        <img src="image2.jpg" alt="Bathroom" />
+        <img src="image3.jpg" alt="Balcony View" />
+        <img src="image4.jpg" alt="Sink" />
+      </div>
+
+      <div class="right-side-column">
+        <div class="amenities-card">
+          <h2>Amenities</h2>
+          <ul>
+            <li>Free Wi-Fi</li>
+            <li>Room Service</li>
+            <li>Pool Access</li>
+            <li>Gym & Spa</li>
+            <li>24/7 Support</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
