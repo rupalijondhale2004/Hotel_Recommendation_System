@@ -43,10 +43,10 @@
     .main {
       width: 90%;
       height: 80vh;
-      background-image: url("hotel.jpeg"); /* Replace with actual image */
+      /* background-image: url("hotel.jpeg"); Replace with actual image
       background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center;
+      background-size: cover;*/
+      background-position: center; 
       margin: 40px auto;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
       border-radius: 10px;
@@ -223,16 +223,17 @@
 
   <!-- ✅ NAVBAR -->
   <div class="navbar">
-    <h1>Surya Hotel</h1>
+    <h1><%=data[0].hotel_name%></h1>
     <div class="nav-contact">
-      <p>Email: info@suryahotel.com</p>
-      <p>Contact: +91 98765 43210</p>
+      <p>Email:<%=data[0].hotel_email%></p>
+      <p>Contact:<%=data[0].hotel_contact%></p>
     </div>
   </div>
 
   <!-- ✅ HEADER IMAGE -->
-  <div class="main"></div>
-
+  <div class="main">
+    <img src="./image/<%=data[0].filename%>">
+  </div>
   <div class="wrapper">
     <!-- ✅ Description + Booking -->
     <div class="main-container">
@@ -259,21 +260,36 @@
     <!-- ✅ Images + Amenities -->
     <div class="images-and-card-container">
       <div class="images">
-        <img src="image1.jpg" alt="Room 1" />
-        <img src="image2.jpg" alt="Bathroom" />
-        <img src="image3.jpg" alt="Balcony View" />
-        <img src="image4.jpg" alt="Sink" />
+            <% if(data.length!=0)
+            {
+                %>
+                    data.forEach((item,index)=>
+                    {
+                        %>
+                            <img src="./image/<%=data[index].filename%>">
+                        <%
+                    });
+                <%
+            }
+            %>
       </div>
 
       <div class="right-side-column">
         <div class="amenities-card">
           <h2>Amenities</h2>
           <ul>
-            <li>Free Wi-Fi</li>
-            <li>Room Service</li>
-            <li>Pool Access</li>
-            <li>Gym & Spa</li>
-            <li>24/7 Support</li>
+                <% if(data.length!=0)
+            {
+                %>
+                    data.forEach((item,index)=>
+                    {
+                        %>
+                            <li><%=data[index].amenity_name</li>
+                        <%
+                    });
+                <%
+            }
+            %>
           </ul>
         </div>
       </div>
