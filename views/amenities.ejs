@@ -87,6 +87,15 @@
         <input type="text" class="form-control" id="name" name="amenity_name" placeholder="Enter Amenities" required />
       </div>
 
+      <div class="form-group">
+        <select class="form-control" name="hotel_id" id="dropbox">
+          <option selected disabled>Select Hotel</option>
+            <% Hoteldata.forEach((item, index) => { %>
+          <option value="<%=item.hotel_id%>"><%=item.hotel_name%></option>
+            <% }); %>
+        </select>
+      </div>
+      
       <!-- Message Box -->
       <div id="msgBox" class="alert alert-dismissible fade show" role="alert">
         <strong id="msgText"></strong>
