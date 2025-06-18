@@ -286,11 +286,11 @@
           <h2>Amenities</h2>
           <ul>
            <% 
-  let displayed = [];
+  let displayed1 = [];
   if (data.length !== 0) {
     data.forEach((item) => {
-      if (!displayed.includes(item.amenity_name)) {
-        displayed.push(item.amenity_name); 
+      if (!displayed1.includes(item.amenity_name)) {
+        displayed1.push(item.amenity_name); 
 %>
         <li><%= item.amenity_name %></li>
 <%    
