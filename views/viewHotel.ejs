@@ -29,6 +29,7 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       border: 1px solid #e0e0e0;
       position: relative;
+      border: 2px solid #000;
     }
 
     .card:hover {
@@ -134,7 +135,7 @@
           <p class="rating">Rating: <%= item.rating %> ⭐</p>
 
           <button type="submit" class="book-btn">
-            <a href="/viewspecifichotel" target="_blank">View Hotel</a>
+            <a href="/viewspecifichotel?id=<%=item.hotel_id%>" target="_blank">View Hotel</a>
           </button>
         </div>
       </div>
