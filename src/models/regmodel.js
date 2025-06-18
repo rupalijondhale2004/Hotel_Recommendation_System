@@ -79,3 +79,41 @@ exports.getFilterCity1=(id)=>
 		});
 })
 };
+
+
+exports.fecthhotel=()=>
+{
+		return new Promise((resolve,reject)=>
+		{
+				db.query("SELECT * FROM hotelmaster",(err,hotelresult)=>{
+			if(err)
+			{
+				
+				reject(err)
+			}
+			else
+			{
+			
+				resolve(hotelresult);
+			}
+	});
+		});
+}
+exports.fecthimage=()=>
+{
+		return new Promise((resolve,reject)=>
+		{
+				db.query("SELECT * FROM hotelpicjoin ",(err,picresult)=>{
+			if(err)
+			{
+				
+				reject(err)
+			}
+			else
+			{
+			
+				resolve(picresult);
+			}
+	});
+		});
+}

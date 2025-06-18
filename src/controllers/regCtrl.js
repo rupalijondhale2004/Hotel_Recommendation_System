@@ -121,29 +121,74 @@ exports.AmenitiesDash=(req,res)=>{
 	res.render("amenitiesDashboard.ejs");
 
 };
-exports.Amenitiespage=(req,res)=>{
 
-	res.render("amenities.ejs",{msg:""});
+exports.Amenitiespage=async(req,res)=>{
 
+	
+
+			try
+			{
+				let r=await model.fecthhotel();
+				res.render("amenities.ejs",{Hoteldata:r,msg:""});
+			}
+			catch(err)
+			{
+				res.render("amenities.ejs",{Hoteldata:[],msg:""});
+			}
+
+	
 };
-exports.Saveamenities=(req,res)=>
+
+exports.Saveamenities=async(req,res)=>
 {
- let {amenity_name}=req.body;
-
-
+ let {amenity_name,hotel_id}=req.body;
+console.log(amenity_name,hotel_id);
+try
+{
+	let r = await model.fecthhotel();
 db.query("insert into amenities  values('0',?)", [amenity_name],(err,result)=>
+ {
+		if(err)
+		{
+			console.log(err);
+			res.render("amenities.ejs",{Hoteldata:r,msg:""});
+		}
+		else{
+			db.query("select amenity_id from amenities where amenity_name=? order by amenity_id desc limit 1",[amenity_name],(err,result1)=>
+			{
+					if(err)
+					{
+						console.log(err);
+							res.render("amenities.ejs",{Hoteldata:r,msg:""});
+					}
+					else
+					{
+						db.query("insert into hotelamenitiesjoin values(?,?)",[hotel_id,result1[0].amenity_id],(err,result3)=>{
+							if(err)
+							{
+								console.log(err);
+									res.render("amenities.ejs",{Hoteldata:r,msg:""});
+							}
+							else{
+									res.render("amenities.ejs",{Hoteldata:r,msg:"Amenities Added Sucesfully"});
+							}
+						});
+					}
+			});
+		}
+ });	
+}
+catch(err)
 {
-	if(err){
-		res.render("amenities.ejs",{msg:"Some Problem Occured while Adding course"});
-	}else{
-		res.render("amenities.ejs",{msg:"Amenities added successfully"});
-	}
-});
-
+	res.render("amenities.ejs",{Hoteldata:r,msg:""});
+}
 };
 
+
+
+ 
 exports.ViewAmenitiespage=(req, res) => {
-	db.query("select * from amenities",(err,result)=>
+	db.query("select a.amenity_name,h.hotel_name,a.amenity_id from amenities a inner join hotelamenitiesjoin ha on a.amenity_id = ha.amenity_id inner join hotelmaster h on ha.hotel_id=h.hotel_id",(err,result)=>
 {
 	if(err)
 	{
@@ -157,7 +202,7 @@ exports.ViewAmenitiespage=(req, res) => {
 	}
 });
 }
- 
+
 exports.AmenitiesDelete=(req, res) => {
   let  amenity_id  = parseInt(req.query.amenityid.trim());
   db.query("delete from amenities where  amenity_id =?", [ amenity_id ], (err, result) => {
@@ -174,6 +219,49 @@ exports.AmenitiesDelete=(req, res) => {
       res.render("viewAmenities.ejs", { Amenitiesdata: result });
     }
   });
+};
+
+
+exports.AddImageDash=(req,res)=>{
+
+	res.render("addimageDashboard.ejs");
+
+};
+
+exports.AddImagepage=async(req,res)=>{
+	try
+			{
+				let r=await model.fecthhotel();
+				let r1=await model.fecthimage();
+				res.render("addimage.ejs",{Hoteldata:r,Picdata:r1,msg:""});
+			}
+			catch(err)
+			{
+				res.render("addimage.ejs",{Hoteldata:[],Picdata:[],msg:""});
+			}
+
+	
+};
+
+
+exports.SaveAddImage = async (req, res) => {
+  let { hotel_id, pic_id } = req.body;
+  console.log(hotel_id, pic_id);
+  try {
+    let r = await model.fecthhotel();
+    let r1 = await model.fecthimage();
+
+    db.query("insert into hotel_pic_map values(?,?)", [hotel_id, pic_id], (err, result3) => {
+      if (err) {
+        console.log(err);
+        res.render("addimage.ejs", { Hoteldata: r, Picdata: r1, msg: "" });
+      } else {
+        res.render("addimage.ejs", { Hoteldata: r, Picdata: r1, msg: "Image Added Sucesfully" });
+      }
+    });
+  } catch (err) {
+    res.render("addimage.ejs", { Hoteldata: r, Picdata: r1, msg: "" });
+  }
 };
 
 
@@ -614,6 +702,38 @@ exports.SearchHotel = (req, res) => {
       res.json(result);
     }
   });
+};
+
+
+
+exports.ViewSpecificDash=(req,res)=>{
+	let q=`SELECT 
+  h.hotel_name,
+  h.hotel_email,
+  h.hotel_contact,
+  hpj.filename,
+  a.amenity_name
+FROM hotelmaster h
+INNER JOIN hotel_pic_map p ON h.hotel_id = p.hotel_id
+INNER JOIN hotelpicjoin hpj ON p.pic_id = hpj.pic_id
+INNER JOIN hotelamenitiesjoin haj ON h.hotel_id = haj.hotel_id
+INNER JOIN amenities a ON haj.amenity_id = a.amenity_id;
+`;
+
+	db.query(q,(err,result)=>
+	{
+		if(err)
+		{
+			
+		}
+		else
+		{
+			console.log("hellow");
+			console.log(result);
+			res.render("viewspecifichotel.ejs",{data:result});
+		}
+	})
+
 };
 
 exports.getFilterCity=async(req,res)=>
