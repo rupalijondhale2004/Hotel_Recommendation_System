@@ -20,20 +20,19 @@
       flex-wrap: wrap;
     }
 
-    .card {
-      background: #ffffff;
-      border-radius: 16px;
-      height: 600px; /* fixed height */
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-      width: 350px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: 2px solid #000;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
+   .card {
+  background: red;
+  border-radius: 16px;
+  height: 600px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  width: 350px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid #000;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* ENABLE SCROLL IF CONTENT OVERFLOWS */
+}
     .card:hover {
       transform: translateY(-10px);
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
