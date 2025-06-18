@@ -311,6 +311,22 @@ db.query("insert into reviewmaster  values('0',?,?,?)", [rev_text,rating,rev_dat
 });
 
 };
+ exports.ViewReviewpage=(req,res)=>{
+	db.query("select * from reviewmaster ",(err,result)=>
+{
+	if(err)
+	{
+		res.render("viewReview.ejs");
+
+	}
+	else
+	{
+		res.render("viewReview.ejs",{Reviewdata:result});
+
+	}
+});
+
+};
 exports.HotelPicDash=(req,res)=>{
 
 	res.render("hotelPicDashboard.ejs");
@@ -336,6 +352,7 @@ db.query("insert into hotelpicjoin  values('0',?)", [filename],(err,result)=>
 
 };
 exports.ViewHotelPicpage=(req, res) => {
+
 	db.query("select * from  hotelpicjoin;",(err,result)=>
 {
 	if(err)
@@ -570,11 +587,66 @@ exports.CustomerView=(req, res) => {
 exports.ViewHotelDash=(req,res)=>{
 
 db.query("SELECT * FROM citymaster",(err,citresult)=>{
-	
-	res.render("viewHotelDashboard.ejs",{Citdata:citresult});
+
+	db.query("SELECT * FROM areamaster",(err,arearesult)=>{
+
+	res.render("viewHotelDashboard.ejs",{Citdata:citresult,Areadata:arearesult,filename:"no"});
+
+	});
 });
 };
 
+exports.SearchHotel = (req, res) => {
+  let cityname = req.query.hd.trim();
+
+  let query = `
+    SELECT h.*, c.city_name 
+    FROM hotelmaster h 
+    JOIN citymaster c ON h.city_id = c.city_id 
+    WHERE c.city_name LIKE ?
+  `;
+
+  db.query(query, [`%${cityname}%`], (err, result) => {
+    if (err) {
+      console.log("SearchHotel error: ", err);
+      
+    } else {
+      res.json(result);
+    }
+  });
+};
+
+exports.getFilterCity=async(req,res)=>
+{
+	let id=req.query.id;
+
+	try
+	{
+	let r=await model.getFilterCity1(id);
+	    console.log(r);
+		db.query("SELECT * FROM citymaster",(err,citresult)=>{
+					console.log(citresult);
+					db.query("SELECT * FROM areamaster",(err,arearesult)=>{
+							console.log(arearesult);
+						res.render("viewHotelDashboard.ejs",{Citdata:citresult,Areadata:arearesult,filename:"viewHotel.ejs",data:r});
+
+			});
+		});
+	}
+	catch(err)
+	{
+		console.log(err);
+		db.query("SELECT * FROM citymaster",(err,citresult)=>{
+
+					db.query("SELECT * FROM areamaster",(err,arearesult)=>{
+
+						res.render("viewHotelDashboard.ejs",{Citdata:citresult,Areadata:arearesult,filename:"viewHotel.ejs",data:r});
+
+			});
+		});
+	
+	}
+};
 
 
 

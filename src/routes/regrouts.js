@@ -36,6 +36,7 @@ router.get("/deleteAreaById",controller.AreaDelete);
 router.get("/reviewDash",controller.ReviewDash);
 router.get("/review",controller.Reviewpage);
 router.post("/savereview",controller.SaveReview)
+router.get("/viewReview",controller.ViewReviewpage);
 
 
 router.get("/hotelDash",controller.HotelDash);
@@ -60,6 +61,12 @@ router.get("/getareadata",controller.getareadata);
 
 router.get("/viewcustomer",controller.CustomerView);
 router.get("/viewhotelDash",controller.ViewHotelDash);
+
+router.get("/searchHotel",controller.SearchHotel);
+
+
+router.get("/getFilterCity",controller.getFilterCity);
+
 module.exports=router;
 
 
