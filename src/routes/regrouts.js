@@ -33,6 +33,11 @@ router.get("/viewArea",controller.ViewAreapage);
 router.get("/deleteAreaById",controller.AreaDelete);
 
 
+router.get("/addpicDash",controller.AddImageDash);
+router.get("/addImage",controller.AddImagepage);
+router.post("/saveaddImage",controller.SaveAddImage)
+
+
 router.get("/reviewDash",controller.ReviewDash);
 router.get("/review",controller.Reviewpage);
 router.post("/savereview",controller.SaveReview)
@@ -56,11 +61,13 @@ router.post("/savepic",controller.SavePic)
 
 
 router.get("/viewhotel",controller.HotelView);
-
+router.get("/viewhotelDash",controller.ViewHotelDash);
 router.get("/getareadata",controller.getareadata);
 
+router.get("/viewspecifichotel",controller.ViewSpecificDash);
+
 router.get("/viewcustomer",controller.CustomerView);
-router.get("/viewhotelDash",controller.ViewHotelDash);
+ 
 
 router.get("/searchHotel",controller.SearchHotel);
 
