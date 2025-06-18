@@ -61,3 +61,21 @@ exports.fecthcity=()=>
 	});
 		});
 }
+
+exports.getFilterCity1=(id)=>
+{
+	return new Promise((resolve,reject)=>
+{
+		db.query("SELECT h.*, j.filename, c.city_name, a.area_name FROM  hotelpicjoin j INNER JOIN hotelmaster h ON j.pic_id = h.pic_id LEFT JOIN citymaster c ON c.city_id = h.city_id LEFT JOIN areamaster a ON a.area_id = h.area_id WHERE h.city_id = ?;",[id],(err,result)=>
+		{
+			if(err)
+			{
+				reject(err);
+			}
+			else
+			{
+				resolve(result);
+			}
+		});
+})
+};
