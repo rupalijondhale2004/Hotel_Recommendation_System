@@ -265,22 +265,40 @@
     <!-- ✅ Images + Amenities -->
     <div class="images-and-card-container">
       <div class="images">
-        <% if (data.length !== 0) { %>
-          <% data.forEach((item, index) => { %>
-            <img src="./image/<%= item.filename %>" alt="Hotel Room">
-          <% }); %>
-        <% } %>
+       <% 
+  let displayed = []; 
+  if (data.length !== 0) {
+    data.forEach((item) => {
+      if (!displayed.includes(item.filename)) {
+        displayed.push(item.filename); 
+%>
+        <img src="./image/<%= item.filename %>" alt="Hotel Room">
+<%    
+      }
+    });
+  } 
+%>
+
       </div>
 
       <div class="right-side-column">
         <div class="amenities-card">
           <h2>Amenities</h2>
           <ul>
-            <% if (data.length !== 0) { %>
-              <% data.forEach((item, index) => { %>
-                <li><%= item.amenity_name %></li>
-              <% }); %>
-            <% } %>
+           <% 
+  let displayed = [];
+  if (data.length !== 0) {
+    data.forEach((item) => {
+      if (!displayed.includes(item.amenity_name)) {
+        displayed.push(item.amenity_name); 
+%>
+        <li><%= item.amenity_name %></li>
+<%    
+      }
+    });
+  } 
+%>
+
           </ul>
         </div>
       </div>
