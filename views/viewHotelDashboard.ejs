@@ -26,21 +26,6 @@
       margin: 0 auto;
     }
 
-    .search-bar {
-      margin-bottom: 12px;
-      text-align: center;
-    }
-
-    .search-bar input {
-      width: 100%;
-      max-width: 300px;
-      padding: 8px 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 14px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-
     .navbar {
       background: #ffffff;
       padding: 10px 16px;
@@ -183,11 +168,6 @@
       scrollbar-color: #888 #f1f1f1; /* Firefox */
     }
 
-    .datahotel{
-      border: 1px solid #000;
-      overflow-y: auto;
-    }
-    
     .hidediv {
       display: none;
       padding: 20px;
@@ -292,10 +272,7 @@
 <body>
 
 <div class="container">
-  <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Search hotels..." onkeyup="searchHotel(this.value)" />
-  </div>
-
+  
   <nav class="navbar">
     <ul class="nav">
       <li class="nav-item"><a class="nav-link active" id="city" onclick="getdata()">Citywise</a></li>
