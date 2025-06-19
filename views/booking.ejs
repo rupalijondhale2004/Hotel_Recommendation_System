@@ -113,9 +113,6 @@
           <input type="date" class="form-control" name="booking_date"  />
         </div>
 
-        
-
-        
         <div class="form-group col-md-6">
           <label>Checkin Date</label>
           <input type="email" class="form-control" name="checkin_date" />
@@ -134,6 +131,27 @@
         <div class="form-group col-md-6">
           <label>Checkout Time</label>
           <input type="time" class="form-control" name="checkout_time"  />
+        </div>
+
+        <div class="form-group col-md-6">
+  <label>Room Type</label>
+  <select class="form-control" id="roomtype" name="roomtype" onchange="setDefaultPrice()">
+    <option value="" disabled selected>Select Room Type</option>
+    <option value="Single">Single</option>
+    <option value="Double">Double</option>
+    <option value="Suite">Suite</option>
+    <option value="Deluxe">Deluxe</option>
+  </select>
+</div>
+
+        <div class="form-group col-md-6">
+  <label>Price</label>
+  <input type="text" class="form-control" id="price" name="price"  />
+</div>
+
+        <div class="form-group col-md-6">
+          <label>Number Of Rooms</label>
+          <input type="time" class="form-control" name="numrooms"  />
         </div>
 
       <% if (msg) { %>
