@@ -170,7 +170,9 @@
           <th>CHECKIN_TIME</th>
           <th>CHECKOUT_DATE</th>
           <th>CHECKOUT_TIME</th>
+          <th>ROOM_TYPE</th>
           <th>PRICE</th>
+          <th>NUMBER_ROOMS</th>
         </tr>
       </thead>
       <tbody id="tblBody1">
@@ -187,7 +189,9 @@
             <td data-label="CHECKIN_TIME"><%= item.checkin_time %></td>
             <td data-label="CHECKOUT_DATE"><%= item.checkout_date %></td>
             <td data-label="CHECKOUT_TIME"><%= item.checkout_time %></td>
-            <!-- <td data-label="Price"><%= item.price %></td> -->
+            <td data-label="ROOM_TYPE"><%= item.roomtype %></td>
+            <td data-label="PRICE"><%= item.price %></td>
+            <td data-label="NUMBER_ROOMS"><%= item.numrooms %></td>
           </tr>
     <% }); %>
   <% } %>
