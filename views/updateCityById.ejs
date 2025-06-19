@@ -98,7 +98,7 @@
 
     <form action="/finalupdateCity" method="post">
         <input type="hidden" class="form-control" id="city" name="city_name" value="<%=erecord[0].city_id%>" required />
-        
+
       <div class="form-group">
         <input type="text" class="form-control" id="city" name="city_name" value="<%=erecord[0].city_name%>" required />
       </div>
@@ -108,11 +108,7 @@
       </div>
 
       <!-- Message Box -->
-      <% if (msg) { %>
-        <div class="alert" role="alert">
-          <strong><%= msg %></strong>
-        </div>
-      <% } %>
+      
 
       <!-- Buttons -->
       <div class="btn-row">
