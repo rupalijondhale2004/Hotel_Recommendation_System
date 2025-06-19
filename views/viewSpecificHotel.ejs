@@ -227,7 +227,7 @@
 
   <!-- ✅ NAVBAR -->
   <div class="navbar">
-    <h1><a href="/validate"><i class="fas fa-arrow-left"></i></a>     <%= data[0].hotel_name %></h1>
+    <h1><a href="/validate"><i class="fas fa-arrow-left"></i></a>  <%= data[0].hotel_name %></h1>
     <div class="nav-contact">
       <p>Email: <%= data[0].hotel_email %></p>
       <p>Contact: <%= data[0].hotel_contact %></p>
@@ -247,7 +247,7 @@
         <p>The room sizes vary from 20 to 25 sqm. They are also equipped with a fully-stocked minibar and snacks, air-conditioning unit, two comfortable chairs, makeup mirror, huge wardrobe, a soft hand-made carpet and ensuite bathroom.</p>
         <p>Perfect choice for honeymooners and couples.</p>
         <p>Moreover, you may also order any type of meal any time as we work around-the-clock.</p><br>
-        <button class="btn"> <a href="/bookinghotel">BOOK NOW</a></button>
+        <button class="btn"><a href="/bookinghotel?id=<%= data[0].hotel_id %>" class="btn btn-primary">Book Now</a></button>
       </div>
 
       <div class="right-booking-card">
